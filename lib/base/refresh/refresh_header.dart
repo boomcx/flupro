@@ -131,7 +131,7 @@ class _NameAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const str = 'TAPEHOUR';
+    const str = 'REFRESH';
     const d = str.length ~/ 2;
     final a = 0.1 * progress;
     final List<double> tmp = [-120, -100, -80, -60, 60, 80, 100, 120];

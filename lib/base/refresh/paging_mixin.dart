@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 mixin PagingMixin<T> {
@@ -11,15 +12,15 @@ mixin PagingMixin<T> {
   List<T> get items => _pagingController.itemList ?? [];
   bool _isRefreshing = false;
 
-  void initPaging() {
+  void initPaging(Ref ref) {
     if (!_isRefreshing) {
       _pagingController.addPageRequestListener(loadData);
     } else {
       _pagingController.notifyPageRequestListeners(1);
     }
-    // ref.onDispose(() {
-      // _isRefreshing = true;
-    // });
+    ref.onDispose(() {
+      _isRefreshing = true;
+    });
   }
 
   Future refresh() {

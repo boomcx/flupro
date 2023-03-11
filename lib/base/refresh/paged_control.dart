@@ -42,7 +42,7 @@ class _Loading extends StatelessWidget {
             color2: Colors.blue,
           ),
           const SizedBox(width: 8),
-          Text(
+         const Text(
             '加载中...',
             style: TextStyle(
               fontSize: 14,

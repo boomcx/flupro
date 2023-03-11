@@ -4,9 +4,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../widgets/app_progress_indicator.dart';
 import '../widgets/empty_data_view.dart';
 
-
 class _NoMore extends StatelessWidget {
-  const _NoMore({super.key});
+  const _NoMore();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class _NoMore extends StatelessWidget {
 }
 
 class _Loading extends StatelessWidget {
-  const _Loading({super.key});
+  const _Loading();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class _Loading extends StatelessWidget {
             color2: Colors.blue,
           ),
           const SizedBox(width: 8),
-         const Text(
+          const Text(
             '加载中...',
             style: TextStyle(
               fontSize: 14,

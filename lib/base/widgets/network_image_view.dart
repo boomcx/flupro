@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class NetworkImageView extends StatelessWidget {
-  const NetworkImageView({
+class NetworkAssets extends StatelessWidget {
+  const NetworkAssets({
     Key? key,
     required this.url,
     this.fit = BoxFit.cover,

@@ -21,7 +21,7 @@ class DefaultEmptyDataView extends StatelessWidget {
     return EmptyDataPlaceholder(
       tip: emptyTip ?? '暂无数据',
       attachChild: emptyAttachChild,
-      icon: emptyIcon ?? Icon(Icons.all_inclusive),
+      icon: emptyIcon ?? const Icon(Icons.all_inclusive),
       onTap: onEmptyTap,
     );
   }

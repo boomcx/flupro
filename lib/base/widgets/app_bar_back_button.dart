@@ -1,7 +1,6 @@
-import 'package:flupro/support_files/theme.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../support_files/assets.gen.dart';
+import '../../app.dart';
 
 class AppBarBackButton extends StatelessWidget {
   const AppBarBackButton({

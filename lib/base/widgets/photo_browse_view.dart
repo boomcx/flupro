@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
-import '../../support_files/theme.dart';
+import '../../app.dart';
 
 class PhotoBrowseView extends StatelessWidget {
   const PhotoBrowseView({

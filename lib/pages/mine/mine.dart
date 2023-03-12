@@ -1,0 +1,1 @@
+export './views/mine_page.dart';

@@ -1,5 +1,8 @@
 export 'params.dart';
 
+import 'dart:ffi';
+
+import 'package:flupro/models.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -30,4 +33,7 @@ abstract class ApiClient {
   /// 退出登录
   @DELETE('/user/logout')
   Future<void> logout();
+
+  @GET('http://jsonplaceholder.typicode.com/posts')
+  Future<List<ArticleModel>> getArticle();
 }

@@ -12,16 +12,20 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/ic_home_nor.png
+  AssetGenImage get icHomeNor =>
+      const AssetGenImage('assets/images/ic_home_nor.png');
+
+  /// File path: assets/images/ic_home_slt.png
+  AssetGenImage get icHomeSlt =>
+      const AssetGenImage('assets/images/ic_home_slt.png');
+
   /// File path: assets/images/ic_nav_back.png
   AssetGenImage get icNavBack =>
       const AssetGenImage('assets/images/ic_nav_back.png');
 
-  /// File path: assets/images/ic_tab_home.png
-  AssetGenImage get icTabHome =>
-      const AssetGenImage('assets/images/ic_tab_home.png');
-
   /// List of all assets
-  List<AssetGenImage> get values => [icNavBack, icTabHome];
+  List<AssetGenImage> get values => [icHomeNor, icHomeSlt, icNavBack];
 }
 
 class Assets {

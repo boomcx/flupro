@@ -1,5 +1,6 @@
 import 'package:flupro/app.dart';
 import 'package:flupro/base/refresh/paged_control.dart';
+import 'package:flupro/generated/l10n.dart';
 import 'package:flupro/models.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -14,7 +15,12 @@ class HomePage extends ConsumerWidget {
       pagingController: ref.watch(articleListNotifierProvider),
       builderDelegate: pagedChildDelegate(
         (context, item, index) {
-          return Text('data: item');
+          return Card(
+            child: ListTile(
+              title: Text(item.title),
+              subtitle: Text(item.body),
+            ),
+          );
         },
       ),
     );

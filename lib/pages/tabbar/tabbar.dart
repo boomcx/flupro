@@ -1,6 +1,7 @@
 import 'package:flupro/app.dart';
 import 'package:flupro/events/events.dart';
 import 'package:flupro/providers.dart';
+import 'package:star_menu/star_menu.dart';
 
 enum TabbarType { home, mine }
 
@@ -53,10 +54,7 @@ class _TabbarPageState extends ConsumerState<TabbarScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text('data'),
-      ),
+      floatingActionButton: const _SectorFabButton(),
       body: Column(
         children: [
           Expanded(
@@ -67,6 +65,45 @@ class _TabbarPageState extends ConsumerState<TabbarScaffold> {
           ),
           _TabBar(index: _index),
         ],
+      ),
+    );
+  }
+}
+
+class _SectorFabButton extends StatelessWidget {
+  const _SectorFabButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StarMenu(
+      items: const [
+        Icon(Icons.back_hand),
+        Icon(Icons.back_hand),
+        Icon(Icons.back_hand),
+      ],
+      params: StarMenuParameters(
+          shape: MenuShape.circle,
+          circleShapeParams: const CircleShapeParams(
+            radiusX: 85,
+            radiusY: 85,
+            startAngle: 90,
+            endAngle: 170,
+          ),
+          backgroundParams: BackgroundParams(
+            sigmaX: 1,
+            sigmaY: 1,
+            animatedBlur: true,
+            animatedBackgroundColor: true,
+            backgroundColor: Colors.black.withOpacity(0.05),
+          )),
+      onItemTapped: (index, controller) {
+        logger.i(index);
+      },
+      child: Container(
+        width: 50,
+        height: 50,
+        color: Colors.red,
+        child: const Text('Fab'),
       ),
     );
   }

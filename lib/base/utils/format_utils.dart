@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 import './error.dart';
 
-String formatError(dynamic e) {
+String? formatError(dynamic e) {
   String error = '';
   if (e is String) return e;
   if (e is DioError) {

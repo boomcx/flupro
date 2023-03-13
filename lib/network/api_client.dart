@@ -1,7 +1,5 @@
 export 'params.dart';
 
-import 'dart:ffi';
-
 import 'package:flupro/models.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';

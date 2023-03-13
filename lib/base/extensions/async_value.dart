@@ -14,7 +14,8 @@ extension AsyncValueToast on AsyncValue {
 
   void showToastOnError() {
     whenOrNull(
-      error: (error, stackTrace) => Toast.showError(formatError(error)),
+      error: (error, stackTrace) =>
+          Toast.showError(formatError(error) ?? 'error'),
     );
   }
 }

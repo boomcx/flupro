@@ -1,6 +1,5 @@
 import 'package:flupro/app.dart';
 import 'package:flupro/base/refresh/paged_control.dart';
-import 'package:flupro/generated/l10n.dart';
 import 'package:flupro/models.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 

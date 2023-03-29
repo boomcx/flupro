@@ -65,20 +65,25 @@ class _PopupMessageState extends State<PopupMessage> {
 
     final follow = Align(
       alignment: Alignment.topLeft,
-      child: CustomSingleChildLayout(
-        delegate: _ChildLayoutDelegate(
-          _config,
-          target: offset & box.size,
-        ),
-        child: CustomPaint(
-          painter: _PopupMsgPainter(
+      child: SafeArea(
+        top: false,
+        bottom: false,
+        child: CustomSingleChildLayout(
+          delegate: _ChildLayoutDelegate(
             _config,
             target: offset & box.size,
           ),
-          child: Container(
-            constraints: BoxConstraints(maxWidth: widget.maxWidth),
-            padding: widget.padding,
-            child: widget.content,
+          child: CustomPaint(
+            painter: _PopupMsgPainter(
+              _config,
+              target: offset & box.size,
+            ),
+            child: Container(
+              constraints: BoxConstraints(maxWidth: widget.maxWidth),
+              // color: Colors.red,
+              padding: widget.padding,
+              child: widget.content,
+            ),
           ),
         ),
       ),
@@ -128,11 +133,12 @@ class _ChildLayoutDelegate extends SingleChildLayoutDelegate {
 
     // 默认显示在正下方
     Offset offset = Offset(
-        0,
-        target.bottom -
-            media.padding.top +
-            config.margin.bottom +
-            config.size.height);
+      0,
+      target.bottom +
+          config.size.height +
+          config.margin.bottom -
+          media.systemGestureInsets.top,
+    );
 
     // 超出左边屏幕
     if (target.center.dx < size.width / 2 + config.margin.left) {
@@ -154,7 +160,7 @@ class _ChildLayoutDelegate extends SingleChildLayoutDelegate {
           offset.dx,
           target.top -
               size.height -
-              media.padding.top -
+              media.systemGestureInsets.top -
               config.margin.top -
               config.size.height);
     }
@@ -224,7 +230,7 @@ class _PopupMsgPainter extends CustomPainter {
 
     // 超出左边屏幕
     if (target.center.dx < size.width / 2 + config.margin.left) {
-      offset = Offset(target.center.dx, offset.dy);
+      offset = Offset(target.center.dx - config.margin.left, offset.dy);
     }
     // 超出屏幕右边
     else if (target.center.dx + size.width / 2 + config.margin.right > sw) {

@@ -1,5 +1,8 @@
 import 'package:flupro/pages/home/home.dart';
 import 'package:flupro/pages/mine/mine.dart';
+import 'package:flupro/pages/widgets/drop_view.dart';
+import 'package:flupro/pages/widgets/shadow_bubble.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'app.dart';
 import 'base/widgets/toast.dart';
@@ -58,6 +61,18 @@ final routerProivder = Provider<GoRouter>((ref) {
             type: TabbarType.mine,
             body: MinePage(),
           ),
+        ),
+      ),
+      GoRoute(
+        path: '/widgets/drop',
+        pageBuilder: (context, state) => const CupertinoPage(
+          child: DropView(),
+        ),
+      ),
+      GoRoute(
+        path: '/widgets/bubble',
+        pageBuilder: (context, state) => const CupertinoPage(
+          child: ShadowBubble(),
         ),
       ),
     ],

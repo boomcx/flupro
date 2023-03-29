@@ -38,7 +38,7 @@ class _TabbarPageState extends ConsumerState<TabbarScaffold> {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
         // } else {
-        context.go('/mine');
+        context.go('/widgets/bubble');
         // }
       },
     },
@@ -119,10 +119,18 @@ class _SectorFabButton extends StatelessWidget {
         logger.i(index);
       },
       child: Container(
+        margin: EdgeInsets.only(right: 35),
         width: 50,
         height: 50,
-        color: Colors.red,
-        child: const Text('Fab'),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: Colors.blue[400],
+          boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 5)],
+        ),
+        child: const Icon(
+          Icons.ac_unit_outlined,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -174,11 +182,13 @@ class _TabBar extends ConsumerWidget {
       );
     }
 
+    final right = MediaQuery.of(context).size.width / (tabList.length + 1);
+
     return _AppEventlistener(
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
         child: Container(
-          padding: const EdgeInsets.only(right: 80),
+          padding: EdgeInsets.only(right: right),
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [

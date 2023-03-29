@@ -23,6 +23,27 @@ class _TabbarPageState extends ConsumerState<TabbarScaffold> {
   int _index = -1;
   List<Widget> _children = [];
 
+  final _tabList = [
+    {
+      'title': '首页',
+      'icon': 'home',
+      'onTap': (BuildContext context) {
+        context.go('/home');
+      },
+    },
+    {
+      'title': '我的',
+      'icon': 'home',
+      'onTap': (BuildContext context) {
+        // if (!ref.read(isLoggedProvider)) {
+        //   context.push('/login');
+        // } else {
+        context.go('/mine');
+        // }
+      },
+    },
+  ];
+
   void _updateChildren() {
     if (widget.type.index != _index) {
       _index = widget.type.index;
@@ -34,12 +55,7 @@ class _TabbarPageState extends ConsumerState<TabbarScaffold> {
   @override
   void initState() {
     super.initState();
-    _children = [
-      const SizedBox(),
-      const SizedBox(),
-      const SizedBox(),
-      const SizedBox(),
-    ];
+    _children = List.generate(_tabList.length, (index) => const SizedBox());
     _updateChildren();
   }
 
@@ -63,7 +79,10 @@ class _TabbarPageState extends ConsumerState<TabbarScaffold> {
               children: _children,
             ),
           ),
-          _TabBar(index: _index),
+          _TabBar(
+            index: _index,
+            tabList: _tabList,
+          ),
         ],
       ),
     );
@@ -77,9 +96,9 @@ class _SectorFabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return StarMenu(
       items: const [
-        Icon(Icons.back_hand),
-        Icon(Icons.back_hand),
-        Icon(Icons.back_hand),
+        Icon(Icons.ac_unit_outlined),
+        Icon(Icons.ac_unit_outlined),
+        Icon(Icons.ac_unit_outlined),
       ],
       params: StarMenuParameters(
           shape: MenuShape.circle,
@@ -113,54 +132,35 @@ class _TabBar extends ConsumerWidget {
   const _TabBar({
     Key? key,
     required this.index,
+    required this.tabList,
   }) : super(key: key);
 
   final int index;
+  final List tabList;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.appColors;
 
-    final data = [
-      {
-        'title': '首页',
-        'icon': 'home',
-        'onTap': (BuildContext context) {
-          context.go('/home');
-        },
-      },
-      {
-        'title': '我的',
-        'icon': 'home',
-        'onTap': (BuildContext context) {
-          // if (!ref.read(isLoggedProvider)) {
-          //   context.push('/login');
-          // } else {
-          context.go('/mine');
-          // }
-        },
-      },
-    ];
-
     List<Widget> children = [];
 
-    for (int i = 0; i < data.length; i++) {
+    for (int i = 0; i < tabList.length; i++) {
       children.add(
         Expanded(
           child: GestureDetector(
-            onTap: () => (data[i]['onTap'] as Function).call(context),
+            onTap: () => (tabList[i]['onTap'] as Function).call(context),
             behavior: HitTestBehavior.opaque,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  'assets/images/ic_${data[i]['icon']}_${i == index ? 'slt' : 'nor'}.png',
+                  'assets/images/ic_${tabList[i]['icon']}_${i == index ? 'slt' : 'nor'}.png',
                   width: 26,
                   height: 26,
                 ),
                 const SizedBox(height: 3),
                 Text(
-                  data[i]['title'] as String,
+                  tabList[i]['title'] as String,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,

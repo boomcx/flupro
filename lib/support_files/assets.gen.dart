@@ -12,6 +12,10 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/bubble_bg.png
+  AssetGenImage get bubbleBg =>
+      const AssetGenImage('assets/images/bubble_bg.png');
+
   /// File path: assets/images/ic_home_nor.png
   AssetGenImage get icHomeNor =>
       const AssetGenImage('assets/images/ic_home_nor.png');
@@ -25,7 +29,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/ic_nav_back.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icHomeNor, icHomeSlt, icNavBack];
+  List<AssetGenImage> get values => [bubbleBg, icHomeNor, icHomeSlt, icNavBack];
 }
 
 class Assets {

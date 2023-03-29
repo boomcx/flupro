@@ -19,12 +19,11 @@ class AppConfig {
 }
 
 final testConfig = AppConfig(
-  serviceHost: 'http://test.deepinfo.cn:90/api',
-  pcService:
-      'http://user-site-pc-1309875532.cos-website.ap-shanghai.myqcloud.com',
+  serviceHost: 'http://www.xxx.com/api',
+  pcService: 'http://www.xxx.com ',
 );
 
 final betaConfig = AppConfig(
-  serviceHost: 'http://www.tapehour.com/api',
-  pcService: 'http://www.tapehour.com ',
+  serviceHost: 'http://www.xxx.com/api',
+  pcService: 'http://www.xxx.com ',
 );

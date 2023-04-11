@@ -12,23 +12,16 @@ class PopupState {
   });
 }
 
-class IndexAndContext {
-  bool isOpen;
-  BuildContext? context;
-
-  IndexAndContext(this.isOpen, {this.context});
-}
-
 class PopupValueNotifier extends ValueNotifier<PopupState> {
   PopupValueNotifier(PopupState state)
-      : status = state.orginItems.map((e) => IndexAndContext(false)).toList(),
+      : status = state.orginItems.map((e) => false).toList(),
         super(state);
 
   final link = LayerLink();
   final GlobalKey targetKey = GlobalKey();
 
   /// 保存每个选项卡对应的视图是否打开
-  final List<IndexAndContext> status;
+  final List<bool> status;
 
   /// 关闭pop
   closeDialog() {

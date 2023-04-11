@@ -1,5 +1,6 @@
 import 'package:flupro/base/widgets/app_bar.dart';
 import 'package:flupro/base/widgets/popup_message.dart';
+import 'package:flupro/base/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
 class ShadowBubble extends StatelessWidget {
@@ -37,16 +38,14 @@ class ShadowBubble extends StatelessWidget {
   }
 
   PopupMessage _textChild() {
-    return PopupMessage(
-      content: const Text(
+    return const PopupMessage(
+      content: Text(
         '当前时间段投资次数前十的赛道当前时间段投资次数前十的赛道当前时间段投资次数前十的赛道',
         style: TextStyle(fontSize: 12.0, color: Color(0xff74798C), height: 1.5),
       ),
-      child: Container(
-        height: 30,
-        alignment: Alignment.center,
-        color: Colors.blue,
-        child: Text('文字显示'),
+      child: PrimaryButton(
+        title: '点我点我',
+        onPressed: null,
       ),
     );
   }

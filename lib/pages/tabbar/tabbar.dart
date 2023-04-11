@@ -5,7 +5,7 @@ import 'package:star_menu/star_menu.dart';
 
 enum TabbarType { home, mine }
 
-class TabbarScaffold extends StatefulHookConsumerWidget {
+class TabbarScaffold extends ConsumerStatefulWidget {
   const TabbarScaffold({
     super.key,
     required this.body,
@@ -38,7 +38,7 @@ class _TabbarPageState extends ConsumerState<TabbarScaffold> {
         // if (!ref.read(isLoggedProvider)) {
         //   context.push('/login');
         // } else {
-        context.go('/widgets/bubble');
+        context.go('/mine');
         // }
       },
     },
@@ -119,7 +119,7 @@ class _SectorFabButton extends StatelessWidget {
         logger.i(index);
       },
       child: Container(
-        margin: EdgeInsets.only(right: 35),
+        margin: const EdgeInsets.only(right: 10),
         width: 50,
         height: 50,
         decoration: BoxDecoration(
@@ -182,7 +182,7 @@ class _TabBar extends ConsumerWidget {
       );
     }
 
-    final right = MediaQuery.of(context).size.width / (tabList.length + 1);
+    final right = MediaQuery.of(context).size.width / (tabList.length + 2);
 
     return _AppEventlistener(
       child: MediaQuery(

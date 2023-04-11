@@ -76,59 +76,33 @@ class TransPopupRouter extends TransModalRoute {
 }
 
 /// 显示下拉展示筛选模态推送框
-Future showDropView({
-  required BuildContext context,
-  required Widget page,
-  required GlobalKey key,
-}) {
-  return Navigator.of(context).push(TransPopupRouter(
-    targetCtx: key.currentContext,
-    barrierColor: Colors.black12,
-    pageBuilder: (context, animation, secondaryAnimation) => page,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return Align(
-        alignment: Alignment.topCenter,
-        child: SizeTransition(
-          sizeFactor: CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeOut,
-          ),
-          child: FadeTransition(
-            opacity: CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOut,
-            ),
-            child: child,
-          ),
-        ),
-      );
-    },
-  ));
-}
-
-// class PopupRouter extends TransPopupRouter {
-//   final Widget page;
-
-//   PopupRouter(this.page)
-//       : super(
-//           pageBuilder: (context, animation, secondaryAnimation) => page,
-//           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//             return Align(
-//               alignment: Alignment.topCenter,
-//               child: SizeTransition(
-//                 sizeFactor: CurvedAnimation(
-//                   parent: animation,
-//                   curve: Curves.easeOut,
-//                 ),
-//                 child: FadeTransition(
-//                   opacity: CurvedAnimation(
-//                     parent: animation,
-//                     curve: Curves.easeOut,
-//                   ),
-//                   child: child,
-//                 ),
-//               ),
-//             );
-//           },
-//         );
+// Future showDropView({
+//   required BuildContext context,
+//   required Widget page,
+//   required GlobalKey key,
+// }) {
+//   return Navigator.of(context).push(TransPopupRouter(
+//     targetCtx: key.currentContext,
+//     barrierColor: Colors.black12,
+//     pageBuilder: (context, animation, secondaryAnimation) => page,
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       return Align(
+//         alignment: Alignment.topCenter,
+//         child: SizeTransition(
+//           sizeFactor: CurvedAnimation(
+//             parent: animation,
+//             curve: Curves.easeOut,
+//           ),
+//           child: FadeTransition(
+//             opacity: CurvedAnimation(
+//               parent: animation,
+//               curve: Curves.easeOut,
+//             ),
+//             child: child,
+//           ),
+//         ),
+//       );
+//     },
+//   ));
 // }
+ 

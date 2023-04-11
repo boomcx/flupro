@@ -12,9 +12,17 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/bubble_bg.png
-  AssetGenImage get bubbleBg =>
-      const AssetGenImage('assets/images/bubble_bg.png');
+  /// File path: assets/images/checkbox_c.png
+  AssetGenImage get checkboxC =>
+      const AssetGenImage('assets/images/checkbox_c.png');
+
+  /// File path: assets/images/checkbox_d.png
+  AssetGenImage get checkboxD =>
+      const AssetGenImage('assets/images/checkbox_d.png');
+
+  /// File path: assets/images/checkbox_s.png
+  AssetGenImage get checkboxS =>
+      const AssetGenImage('assets/images/checkbox_s.png');
 
   /// File path: assets/images/ic_home_nor.png
   AssetGenImage get icHomeNor =>
@@ -28,8 +36,30 @@ class $AssetsImagesGen {
   AssetGenImage get icNavBack =>
       const AssetGenImage('assets/images/ic_nav_back.png');
 
+  /// File path: assets/images/ic_select_s.png
+  AssetGenImage get icSelectS =>
+      const AssetGenImage('assets/images/ic_select_s.png');
+
+  /// File path: assets/images/icon_explain.png
+  AssetGenImage get iconExplain =>
+      const AssetGenImage('assets/images/icon_explain.png');
+
+  /// File path: assets/images/search_icon_vip.png
+  AssetGenImage get searchIconVip =>
+      const AssetGenImage('assets/images/search_icon_vip.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [bubbleBg, icHomeNor, icHomeSlt, icNavBack];
+  List<AssetGenImage> get values => [
+        checkboxC,
+        checkboxD,
+        checkboxS,
+        icHomeNor,
+        icHomeSlt,
+        icNavBack,
+        icSelectS,
+        iconExplain,
+        searchIconVip
+      ];
 }
 
 class Assets {

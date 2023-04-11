@@ -1,6 +1,6 @@
+import 'package:flupro/app.dart';
 import 'package:flupro/base/widgets/app_bar.dart';
-import 'package:flupro/custom/drop_btns/view.dart';
-import 'package:flutter/material.dart';
+import 'package:flupro/custom/spinner/spinner.dart';
 
 class DropView extends StatelessWidget {
   const DropView({super.key});
@@ -11,15 +11,42 @@ class DropView extends StatelessWidget {
       appBar: const AAppBar(title: '下拉弹框'),
       body: Column(
         children: [
-          DropdownBtns(
-            items: const ['title1', 'title2'],
+          SpinnerBox(
+            titles: const ['年份List', '年份Btn'],
             builder: (p0) => [
-              Container(color: Colors.red, height: 200).heightPart,
-              Container(color: Colors.yellow, height: 600).heightPart,
+              // MoreFilter(
+              //   data: [
+              //     MoreFilterEntity(
+              //         key: 'year',
+              //         type: MoreContentType.checkList,
+              //         items: [
+              //           const MoreFilterItem(name: '不限', value: ''),
+              //           ...List.generate(5, (index) {
+              //             final year = (DateTime.now().year - index).toString();
+              //             return MoreFilterItem(name: year, value: year);
+              //           }),
+              //         ])
+              //   ],
+              //   onSure: (result, name) {},
+              // ).heightPart,
+              // Consumer(
+              //   builder: (context, ref, child) {
+              //     final data = ref.watch(filterYearProvider);
+              //     final selected = ref.watch(yearSelectedProvider);
+              //     return MoreFilter(
+              //       data: data,
+              //       selected: selected,
+              //       onSure: (result, name) {
+              //         print(selected);
+              //         p0.updateName(name);
+              //       },
+              //     );
+              //   },
+              // ).heightPart,
             ],
           ),
-          DropdownBtns(
-            items: const ['title3', 'title4'],
+          SpinnerBox(
+            titles: const ['title3', 'title4'],
             builder: (p0) => [
               Container(color: Colors.blue, height: 150).heightPart,
               Container(color: Colors.green, height: 300).heightPart,
@@ -30,3 +57,17 @@ class DropView extends StatelessWidget {
     );
   }
 }
+
+// @riverpod
+// List<MoreFilterEntity> filterYear(FilterYearRef ref) {
+//   return [
+//     MoreFilterEntity(key: 'year', title: '分组1', isRadio: false, items: [
+//       const MoreFilterItem(name: '不限', value: ''),
+//       ...List.generate(10, (index) {
+//         final year = (DateTime.now().year - index).toString();
+//         return MoreFilterItem(name: year, value: year);
+//       }),
+//     ])
+//   ];
+// }
+ 

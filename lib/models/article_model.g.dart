@@ -8,18 +8,22 @@ part of 'article_model.dart';
 
 _$_ArticleModel _$$_ArticleModelFromJson(Map<String, dynamic> json) =>
     _$_ArticleModel(
-      userId: json['userId'] == null
+      width: json['width'] == null
           ? 0
-          : const JsonAlwaysNum().fromJson(json['userId']),
-      id: json['id'] == null ? 0 : const JsonAlwaysNum().fromJson(json['id']),
-      body: json['body'] as String? ?? '',
-      title: json['title'] as String? ?? '',
+          : const JsonAlwaysNum().fromJson(json['width']),
+      height: json['height'] == null
+          ? 0
+          : const JsonAlwaysNum().fromJson(json['height']),
+      id: json['id'] == null
+          ? ''
+          : const JsonAlwaysString().fromJson(json['id']),
+      url: json['url'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_ArticleModelToJson(_$_ArticleModel instance) =>
     <String, dynamic>{
-      'userId': const JsonAlwaysNum().toJson(instance.userId),
-      'id': const JsonAlwaysNum().toJson(instance.id),
-      'body': instance.body,
-      'title': instance.title,
+      'width': const JsonAlwaysNum().toJson(instance.width),
+      'height': const JsonAlwaysNum().toJson(instance.height),
+      'id': const JsonAlwaysString().toJson(instance.id),
+      'url': instance.url,
     };

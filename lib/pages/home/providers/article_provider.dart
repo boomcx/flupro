@@ -17,12 +17,11 @@ class ArticleListNotifier extends _$ArticleListNotifier
   @override
   FutureOr loadData(int page) async {
     beginLoad(page);
-
     try {
-      final items = await ref.read(apiClientProvider).getArticle();
-      endLoad(items: items);
+      final items = await ref.read(apiClientProvider).getArticle(5);
+      endLoad(items);
     } catch (e) {
-      print(e);
+      endLoad(null);
     }
   }
 }

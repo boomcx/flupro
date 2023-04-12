@@ -6,10 +6,10 @@ part 'article_model.g.dart';
 @freezed
 class ArticleModel with _$ArticleModel {
   const factory ArticleModel({
-    @JsonAlwaysNum() @Default(0) num userId,
-    @JsonAlwaysNum() @Default(0) num id,
-    @Default('') String body,
-    @Default('') String title,
+    @JsonAlwaysNum() @Default(0) num width,
+    @JsonAlwaysNum() @Default(0) num height,
+    @JsonAlwaysString() @Default('') String id,
+    @Default('') String url,
   }) = _ArticleModel;
   factory ArticleModel.fromJson(Map<String, Object?> json) =>
       _$ArticleModelFromJson(json);

@@ -105,9 +105,9 @@ class _RefreshAnimation extends StatelessWidget {
                 scale: progress,
                 child: Opacity(
                   opacity: progress,
-                  child: SpinKitPouringHourGlass(
-                    size: 40,
-                    color: color ?? Colors.blue,
+                  child: SpinKitSquareCircle(
+                    size: 22,
+                    color: color ?? Colors.blue[200],
                   ),
                 ),
               ),
@@ -131,10 +131,13 @@ class _NameAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const str = 'REFRESH';
+    const str = 'REFRESHING!';
     const d = str.length ~/ 2;
     final a = 0.1 * progress;
-    final List<double> tmp = [-120, -100, -80, -60, 60, 80, 100, 120];
+    // [-120, -100, -80, -60, 60, 80, 100, 120]
+    final List<double> space =
+        List.generate(d + 1, (index) => (60 + 20.0 * index));
+    final tmp = space.reversed.map((e) => -e).toList() + space;
 
     final children = List.generate(str.length, (index) {
       double t = 0;
@@ -156,9 +159,9 @@ class _NameAnimation extends StatelessWidget {
     });
     return DefaultTextStyle(
       style: TextStyle(
-        fontSize: 22,
+        fontSize: 14,
         fontWeight: FontWeight.bold,
-        color: color ?? Colors.blue,
+        color: color ?? Colors.blue[200],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

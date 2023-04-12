@@ -9,6 +9,7 @@ class NetworkAssets extends StatelessWidget {
     this.width,
     this.height,
     this.placeholder,
+    this.error,
   }) : super(key: key);
 
   final String url;
@@ -16,6 +17,7 @@ class NetworkAssets extends StatelessWidget {
   final double? width;
   final double? height;
   final Widget? placeholder;
+  final Widget? error;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class NetworkAssets extends StatelessWidget {
       width: width,
       height: height,
       placeholder: (context, url) => placeholder,
-      errorWidget: (context, url, error) => placeholder,
+      errorWidget: (context, url, error) => error,
     );
   }
 }

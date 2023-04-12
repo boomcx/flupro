@@ -39,9 +39,9 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<ArticleModel>> getArticle() async {
+  Future<List<ArticleModel>> getArticle(limit) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'limit': limit};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -52,7 +52,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'http://jsonplaceholder.typicode.com/posts',
+              'https://api.thecatapi.com/v1/images/search',
               queryParameters: queryParameters,
               data: _data,
             )

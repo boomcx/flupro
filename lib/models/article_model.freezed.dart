@@ -21,11 +21,12 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ArticleModel {
   @JsonAlwaysNum()
-  num get userId => throw _privateConstructorUsedError;
+  num get width => throw _privateConstructorUsedError;
   @JsonAlwaysNum()
-  num get id => throw _privateConstructorUsedError;
-  String get body => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  num get height => throw _privateConstructorUsedError;
+  @JsonAlwaysString()
+  String get id => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,10 +41,10 @@ abstract class $ArticleModelCopyWith<$Res> {
       _$ArticleModelCopyWithImpl<$Res, ArticleModel>;
   @useResult
   $Res call(
-      {@JsonAlwaysNum() num userId,
-      @JsonAlwaysNum() num id,
-      String body,
-      String title});
+      {@JsonAlwaysNum() num width,
+      @JsonAlwaysNum() num height,
+      @JsonAlwaysString() String id,
+      String url});
 }
 
 /// @nodoc
@@ -59,27 +60,27 @@ class _$ArticleModelCopyWithImpl<$Res, $Val extends ArticleModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? width = null,
+    Object? height = null,
     Object? id = null,
-    Object? body = null,
-    Object? title = null,
+    Object? url = null,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as num,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
               as num,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as num,
-      body: null == body
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -94,10 +95,10 @@ abstract class _$$_ArticleModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonAlwaysNum() num userId,
-      @JsonAlwaysNum() num id,
-      String body,
-      String title});
+      {@JsonAlwaysNum() num width,
+      @JsonAlwaysNum() num height,
+      @JsonAlwaysString() String id,
+      String url});
 }
 
 /// @nodoc
@@ -111,27 +112,27 @@ class __$$_ArticleModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? width = null,
+    Object? height = null,
     Object? id = null,
-    Object? body = null,
-    Object? title = null,
+    Object? url = null,
   }) {
     return _then(_$_ArticleModel(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as num,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
               as num,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as num,
-      body: null == body
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -141,10 +142,10 @@ class __$$_ArticleModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ArticleModel implements _ArticleModel {
   const _$_ArticleModel(
-      {@JsonAlwaysNum() this.userId = 0,
-      @JsonAlwaysNum() this.id = 0,
-      this.body = '',
-      this.title = ''});
+      {@JsonAlwaysNum() this.width = 0,
+      @JsonAlwaysNum() this.height = 0,
+      @JsonAlwaysString() this.id = '',
+      this.url = ''});
 
   factory _$_ArticleModel.fromJson(Map<String, dynamic> json) =>
       _$$_ArticleModelFromJson(json);
@@ -152,21 +153,22 @@ class _$_ArticleModel implements _ArticleModel {
   @override
   @JsonKey()
   @JsonAlwaysNum()
-  final num userId;
+  final num width;
   @override
   @JsonKey()
   @JsonAlwaysNum()
-  final num id;
+  final num height;
   @override
   @JsonKey()
-  final String body;
+  @JsonAlwaysString()
+  final String id;
   @override
   @JsonKey()
-  final String title;
+  final String url;
 
   @override
   String toString() {
-    return 'ArticleModel(userId: $userId, id: $id, body: $body, title: $title)';
+    return 'ArticleModel(width: $width, height: $height, id: $id, url: $url)';
   }
 
   @override
@@ -174,15 +176,15 @@ class _$_ArticleModel implements _ArticleModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ArticleModel &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.body, body) || other.body == body) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, id, body, title);
+  int get hashCode => Object.hash(runtimeType, width, height, id, url);
 
   @JsonKey(ignore: true)
   @override
@@ -200,24 +202,25 @@ class _$_ArticleModel implements _ArticleModel {
 
 abstract class _ArticleModel implements ArticleModel {
   const factory _ArticleModel(
-      {@JsonAlwaysNum() final num userId,
-      @JsonAlwaysNum() final num id,
-      final String body,
-      final String title}) = _$_ArticleModel;
+      {@JsonAlwaysNum() final num width,
+      @JsonAlwaysNum() final num height,
+      @JsonAlwaysString() final String id,
+      final String url}) = _$_ArticleModel;
 
   factory _ArticleModel.fromJson(Map<String, dynamic> json) =
       _$_ArticleModel.fromJson;
 
   @override
   @JsonAlwaysNum()
-  num get userId;
+  num get width;
   @override
   @JsonAlwaysNum()
-  num get id;
+  num get height;
   @override
-  String get body;
+  @JsonAlwaysString()
+  String get id;
   @override
-  String get title;
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$_ArticleModelCopyWith<_$_ArticleModel> get copyWith =>

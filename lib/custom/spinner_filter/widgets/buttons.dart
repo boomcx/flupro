@@ -30,9 +30,9 @@ class _PopBotButton extends StatelessWidget {
         ),
         child: Text(
           name,
-          style: isReset
-              ? TextStyle(color: appColors.comFFF, fontSize: 12)
-              : TextStyle(color: appColors.text1, fontSize: 12),
+          style: !isReset
+              ? TextStyle(color: appColors.comFFF, fontSize: 16)
+              : TextStyle(color: appColors.text1, fontSize: 16),
         ),
       ),
     );

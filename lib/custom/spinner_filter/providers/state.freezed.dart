@@ -15,44 +15,44 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$MoreFilterState {
+mixin _$SpinnerFilterState {
   /// 是否单选模式
   /// 是否只有一个条件且只能单选 （判断显示底部按钮）(没有额外输入的筛选项-待定)
   /// `true` 点击按钮就要关闭弹框
   /// `false` 只有点击确认才关闭
   bool get singleConditionAndSingleSelect => throw _privateConstructorUsedError;
 
-  /// 是否提交
-  bool get isSubmit => throw _privateConstructorUsedError;
+  /// 是否完成选择，用增量表示  increment++
+  int get increment => throw _privateConstructorUsedError;
 
   /// 原始数据
   List<SpinnerFilterEntity> get items => throw _privateConstructorUsedError;
 
   /// 选中数据
-  List<SpinnerFilterItem> get selected => throw _privateConstructorUsedError;
+  bool get isInit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MoreFilterStateCopyWith<MoreFilterState> get copyWith =>
+  $SpinnerFilterStateCopyWith<SpinnerFilterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MoreFilterStateCopyWith<$Res> {
-  factory $MoreFilterStateCopyWith(
-          MoreFilterState value, $Res Function(MoreFilterState) then) =
-      _$MoreFilterStateCopyWithImpl<$Res, MoreFilterState>;
+abstract class $SpinnerFilterStateCopyWith<$Res> {
+  factory $SpinnerFilterStateCopyWith(
+          SpinnerFilterState value, $Res Function(SpinnerFilterState) then) =
+      _$SpinnerFilterStateCopyWithImpl<$Res, SpinnerFilterState>;
   @useResult
   $Res call(
       {bool singleConditionAndSingleSelect,
-      bool isSubmit,
+      int increment,
       List<SpinnerFilterEntity> items,
-      List<SpinnerFilterItem> selected});
+      bool isInit});
 }
 
 /// @nodoc
-class _$MoreFilterStateCopyWithImpl<$Res, $Val extends MoreFilterState>
-    implements $MoreFilterStateCopyWith<$Res> {
-  _$MoreFilterStateCopyWithImpl(this._value, this._then);
+class _$SpinnerFilterStateCopyWithImpl<$Res, $Val extends SpinnerFilterState>
+    implements $SpinnerFilterStateCopyWith<$Res> {
+  _$SpinnerFilterStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -63,93 +63,92 @@ class _$MoreFilterStateCopyWithImpl<$Res, $Val extends MoreFilterState>
   @override
   $Res call({
     Object? singleConditionAndSingleSelect = null,
-    Object? isSubmit = null,
+    Object? increment = null,
     Object? items = null,
-    Object? selected = null,
+    Object? isInit = null,
   }) {
     return _then(_value.copyWith(
       singleConditionAndSingleSelect: null == singleConditionAndSingleSelect
           ? _value.singleConditionAndSingleSelect
           : singleConditionAndSingleSelect // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSubmit: null == isSubmit
-          ? _value.isSubmit
-          : isSubmit // ignore: cast_nullable_to_non_nullable
-              as bool,
+      increment: null == increment
+          ? _value.increment
+          : increment // ignore: cast_nullable_to_non_nullable
+              as int,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<SpinnerFilterEntity>,
-      selected: null == selected
-          ? _value.selected
-          : selected // ignore: cast_nullable_to_non_nullable
-              as List<SpinnerFilterItem>,
+      isInit: null == isInit
+          ? _value.isInit
+          : isInit // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_MoreFilterStateCopyWith<$Res>
-    implements $MoreFilterStateCopyWith<$Res> {
-  factory _$$_MoreFilterStateCopyWith(
-          _$_MoreFilterState value, $Res Function(_$_MoreFilterState) then) =
-      __$$_MoreFilterStateCopyWithImpl<$Res>;
+abstract class _$$_SpinnerFilterStateCopyWith<$Res>
+    implements $SpinnerFilterStateCopyWith<$Res> {
+  factory _$$_SpinnerFilterStateCopyWith(_$_SpinnerFilterState value,
+          $Res Function(_$_SpinnerFilterState) then) =
+      __$$_SpinnerFilterStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {bool singleConditionAndSingleSelect,
-      bool isSubmit,
+      int increment,
       List<SpinnerFilterEntity> items,
-      List<SpinnerFilterItem> selected});
+      bool isInit});
 }
 
 /// @nodoc
-class __$$_MoreFilterStateCopyWithImpl<$Res>
-    extends _$MoreFilterStateCopyWithImpl<$Res, _$_MoreFilterState>
-    implements _$$_MoreFilterStateCopyWith<$Res> {
-  __$$_MoreFilterStateCopyWithImpl(
-      _$_MoreFilterState _value, $Res Function(_$_MoreFilterState) _then)
+class __$$_SpinnerFilterStateCopyWithImpl<$Res>
+    extends _$SpinnerFilterStateCopyWithImpl<$Res, _$_SpinnerFilterState>
+    implements _$$_SpinnerFilterStateCopyWith<$Res> {
+  __$$_SpinnerFilterStateCopyWithImpl(
+      _$_SpinnerFilterState _value, $Res Function(_$_SpinnerFilterState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? singleConditionAndSingleSelect = null,
-    Object? isSubmit = null,
+    Object? increment = null,
     Object? items = null,
-    Object? selected = null,
+    Object? isInit = null,
   }) {
-    return _then(_$_MoreFilterState(
+    return _then(_$_SpinnerFilterState(
       singleConditionAndSingleSelect: null == singleConditionAndSingleSelect
           ? _value.singleConditionAndSingleSelect
           : singleConditionAndSingleSelect // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSubmit: null == isSubmit
-          ? _value.isSubmit
-          : isSubmit // ignore: cast_nullable_to_non_nullable
-              as bool,
+      increment: null == increment
+          ? _value.increment
+          : increment // ignore: cast_nullable_to_non_nullable
+              as int,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<SpinnerFilterEntity>,
-      selected: null == selected
-          ? _value._selected
-          : selected // ignore: cast_nullable_to_non_nullable
-              as List<SpinnerFilterItem>,
+      isInit: null == isInit
+          ? _value.isInit
+          : isInit // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_MoreFilterState implements _MoreFilterState {
-  const _$_MoreFilterState(
+class _$_SpinnerFilterState implements _SpinnerFilterState {
+  const _$_SpinnerFilterState(
       {this.singleConditionAndSingleSelect = false,
-      this.isSubmit = false,
+      this.increment = 0,
       final List<SpinnerFilterEntity> items = const [],
-      final List<SpinnerFilterItem> selected = const []})
-      : _items = items,
-        _selected = selected;
+      this.isInit = false})
+      : _items = items;
 
   /// 是否单选模式
   /// 是否只有一个条件且只能单选 （判断显示底部按钮）(没有额外输入的筛选项-待定)
@@ -159,10 +158,10 @@ class _$_MoreFilterState implements _MoreFilterState {
   @JsonKey()
   final bool singleConditionAndSingleSelect;
 
-  /// 是否提交
+  /// 是否完成选择，用增量表示  increment++
   @override
   @JsonKey()
-  final bool isSubmit;
+  final int increment;
 
   /// 原始数据
   final List<SpinnerFilterEntity> _items;
@@ -177,58 +176,48 @@ class _$_MoreFilterState implements _MoreFilterState {
   }
 
   /// 选中数据
-  final List<SpinnerFilterItem> _selected;
-
-  /// 选中数据
   @override
   @JsonKey()
-  List<SpinnerFilterItem> get selected {
-    if (_selected is EqualUnmodifiableListView) return _selected;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_selected);
-  }
+  final bool isInit;
 
   @override
   String toString() {
-    return 'MoreFilterState(singleConditionAndSingleSelect: $singleConditionAndSingleSelect, isSubmit: $isSubmit, items: $items, selected: $selected)';
+    return 'SpinnerFilterState(singleConditionAndSingleSelect: $singleConditionAndSingleSelect, increment: $increment, items: $items, isInit: $isInit)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MoreFilterState &&
+            other is _$_SpinnerFilterState &&
             (identical(other.singleConditionAndSingleSelect,
                     singleConditionAndSingleSelect) ||
                 other.singleConditionAndSingleSelect ==
                     singleConditionAndSingleSelect) &&
-            (identical(other.isSubmit, isSubmit) ||
-                other.isSubmit == isSubmit) &&
+            (identical(other.increment, increment) ||
+                other.increment == increment) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
-            const DeepCollectionEquality().equals(other._selected, _selected));
+            (identical(other.isInit, isInit) || other.isInit == isInit));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      singleConditionAndSingleSelect,
-      isSubmit,
-      const DeepCollectionEquality().hash(_items),
-      const DeepCollectionEquality().hash(_selected));
+  int get hashCode => Object.hash(runtimeType, singleConditionAndSingleSelect,
+      increment, const DeepCollectionEquality().hash(_items), isInit);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MoreFilterStateCopyWith<_$_MoreFilterState> get copyWith =>
-      __$$_MoreFilterStateCopyWithImpl<_$_MoreFilterState>(this, _$identity);
+  _$$_SpinnerFilterStateCopyWith<_$_SpinnerFilterState> get copyWith =>
+      __$$_SpinnerFilterStateCopyWithImpl<_$_SpinnerFilterState>(
+          this, _$identity);
 }
 
-abstract class _MoreFilterState implements MoreFilterState {
-  const factory _MoreFilterState(
+abstract class _SpinnerFilterState implements SpinnerFilterState {
+  const factory _SpinnerFilterState(
       {final bool singleConditionAndSingleSelect,
-      final bool isSubmit,
+      final int increment,
       final List<SpinnerFilterEntity> items,
-      final List<SpinnerFilterItem> selected}) = _$_MoreFilterState;
+      final bool isInit}) = _$_SpinnerFilterState;
 
   @override
 
@@ -239,8 +228,8 @@ abstract class _MoreFilterState implements MoreFilterState {
   bool get singleConditionAndSingleSelect;
   @override
 
-  /// 是否提交
-  bool get isSubmit;
+  /// 是否完成选择，用增量表示  increment++
+  int get increment;
   @override
 
   /// 原始数据
@@ -248,9 +237,9 @@ abstract class _MoreFilterState implements MoreFilterState {
   @override
 
   /// 选中数据
-  List<SpinnerFilterItem> get selected;
+  bool get isInit;
   @override
   @JsonKey(ignore: true)
-  _$$_MoreFilterStateCopyWith<_$_MoreFilterState> get copyWith =>
+  _$$_SpinnerFilterStateCopyWith<_$_SpinnerFilterState> get copyWith =>
       throw _privateConstructorUsedError;
 }

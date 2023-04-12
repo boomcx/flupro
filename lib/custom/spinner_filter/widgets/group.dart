@@ -1,9 +1,10 @@
 part of '../spinner_filter.dart';
 
 class _GroupContent extends StatelessWidget {
-  const _GroupContent(this.group);
+  const _GroupContent(this.group, this.index);
 
   final SpinnerFilterEntity group;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,19 @@ class _GroupContent extends StatelessWidget {
           children: [
             _GroupHeader(group: group),
             if (group.type == MoreContentType.checkList)
-              _CheckListCnt(group: group),
+              ProviderScope(
+                overrides: [
+                  spinnerGroupProvider.overrideWithValue(Tuple2(group, index)),
+                ],
+                child: const _CheckListCnt(),
+              ),
             if (group.type == MoreContentType.groupBtn)
-              _GroupBtnsCnt(group: group),
+              ProviderScope(
+                overrides: [
+                  spinnerGroupProvider.overrideWithValue(Tuple2(group, index)),
+                ],
+                child: const _GroupBtnsCnt(),
+              )
           ],
         ));
   }
@@ -53,31 +64,31 @@ class _GroupHeader extends StatelessWidget {
 }
 
 class _CheckListCnt extends ConsumerWidget {
-  const _CheckListCnt({
-    required this.group,
-  });
-  final SpinnerFilterEntity group;
+  const _CheckListCnt();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final tuple = ref.watch(spinnerGroupProvider);
+    final items = tuple.item1.items;
+
     return ListView.builder(
       padding: EdgeInsets.zero,
       physics: const ClampingScrollPhysics(),
       shrinkWrap: true,
-      itemCount: group.items.length,
+      itemCount: items.length,
       itemBuilder: (context, index) {
-        final item = group.items[index];
+        final item = items[index];
         return ButtonScope(
           // behavior: HitTestBehavior.translucent,
           onPressed: () {
             ref
                 .read(spinnerFilterNotifierProvider.notifier)
-                .buttonClick(group, item);
+                .itemOnClick(tuple, index);
           },
           child: _CheckListItem(
             name: item.name,
             isSelect: item.selected,
-            isMuti: !group.isRadio,
+            isMuti: !tuple.item1.isRadio,
           ),
         );
       },
@@ -86,25 +97,22 @@ class _CheckListCnt extends ConsumerWidget {
 }
 
 class _GroupBtnsCnt extends ConsumerWidget {
-  const _GroupBtnsCnt({
-    required this.group,
-  });
-
-  final SpinnerFilterEntity group;
+  const _GroupBtnsCnt();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = group.items;
+    final tuple = ref.watch(spinnerGroupProvider);
+    final items = tuple.item1.items;
 
     return Wrap(spacing: 10, runSpacing: 10, children: [
       ...List.generate(
         items.length,
-        (i) {
-          final item = items[i];
-          return _Button(item.name, items[i].selected, onPressed: () {
+        (index) {
+          final item = items[index];
+          return _Button(item.name, item.selected, onPressed: () {
             ref
                 .read(spinnerFilterNotifierProvider.notifier)
-                .buttonClick(group, item);
+                .itemOnClick(tuple, index);
           });
         },
       ),

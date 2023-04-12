@@ -11,9 +11,12 @@ class _ExplainIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final appColors = context.appColors;
     return PopupMessage(
-      content: Text(desc,
-          style: TextStyle(color: appColors.text4, height: 1.5, fontSize: 12)),
-      child: Assets.images.iconExplain.image(width: 16, fit: BoxFit.contain),
+      bgColor: Colors.black54,
+      content: Text(
+        desc,
+        style: TextStyle(color: appColors.comFFF, height: 1.5, fontSize: 13),
+      ),
+      child: Assets.images.iconExplain.image(width: 15, fit: BoxFit.contain),
     );
   }
 }

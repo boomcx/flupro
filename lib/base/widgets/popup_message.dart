@@ -6,6 +6,8 @@ class _PopupConfig {
   /// 内容边框边距
   // final double padding;
 
+  final Color bgColor;
+
   /// 距离点击视图的间隔 / 上下左右的距离
   final EdgeInsets margin;
 
@@ -15,8 +17,9 @@ class _PopupConfig {
   _PopupConfig({
     required this.context,
     // this.padding = 10,
-    this.margin = const EdgeInsets.all(10),
-    this.size = const Size(7, 7),
+   required this.margin ,
+   required this.size ,
+  required  this.bgColor,
   });
 }
 
@@ -26,8 +29,9 @@ class PopupMessage extends StatefulWidget {
     required this.child,
     required this.content,
     this.padding = const EdgeInsets.all(10),
-    this.margin = const EdgeInsets.all(10),
+    this.margin = const EdgeInsets.all(5),
     this.size = const Size(7, 7),
+    this.bgColor = Colors.white,
     this.maxWidth = 200,
     this.barrierColor = const Color(0x05000000),
   });
@@ -39,6 +43,7 @@ class PopupMessage extends StatefulWidget {
   final EdgeInsets margin;
   final Size size;
   final Color barrierColor;
+  final Color bgColor;
 
   @override
   State<PopupMessage> createState() => _PopupMessageState();
@@ -54,6 +59,7 @@ class _PopupMessageState extends State<PopupMessage> {
       // padding: widget.padding,
       margin: widget.margin,
       size: widget.size,
+      bgColor: widget.bgColor,
     );
 
     super.initState();
@@ -186,7 +192,7 @@ class _PopupMsgPainter extends CustomPainter {
     final paint = Paint()
       ..strokeWidth = 2
       ..style = PaintingStyle.fill
-      ..color = Colors.white;
+      ..color = config.bgColor;
 
     final path = Path();
 

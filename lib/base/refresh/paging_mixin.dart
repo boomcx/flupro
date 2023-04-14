@@ -19,14 +19,13 @@ mixin PagingMixin<T> {
     if (_initPage != initPage) {
       _initPage = initPage;
       _pagingController.dispose();
-      _pagingController =
-          PagingController(firstPageKey: initPage, invisibleItemsThreshold: 1);
+      _pagingController = PagingController(firstPageKey: initPage);
     }
 
     if (!_isRefreshing) {
       _pagingController.addPageRequestListener(loadData);
     } else {
-      _pagingController.notifyPageRequestListeners(1);
+      _pagingController.notifyPageRequestListeners(_initPage);
     }
     ref.onDispose(() {
       _isRefreshing = true;
@@ -42,7 +41,7 @@ mixin PagingMixin<T> {
   Future refresh() {
     _refreshComplater = Completer();
     retryLastFailedRequest();
-    _pagingController.notifyPageRequestListeners(1);
+    _pagingController.notifyPageRequestListeners(_initPage);
     return _refreshComplater!.future;
   }
 
@@ -62,7 +61,7 @@ mixin PagingMixin<T> {
   void endLoad(
     List<T>? list, {
     int maxCount = 0,
-    int limit = 5,
+    int limit = 0,
     dynamic error,
   }) {
     if (_page == 1) {

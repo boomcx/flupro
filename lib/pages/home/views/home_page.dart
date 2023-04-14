@@ -20,6 +20,7 @@ class HomePage extends ConsumerWidget {
         },
         childBuilder: (BuildContext context, ScrollPhysics physics) {
           return PagedListView<int, ArticleModel>(
+            scrollController: ScrollController(),
             physics: physics,
             pagingController: ref.watch(articleListNotifierProvider),
             builderDelegate: pagedChildDelegate(
@@ -31,6 +32,7 @@ class HomePage extends ConsumerWidget {
                   ),
                 );
               },
+              animateTransitions: true,
             ),
           );
         },

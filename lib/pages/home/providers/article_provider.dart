@@ -18,7 +18,7 @@ class ArticleListNotifier extends _$ArticleListNotifier
   FutureOr loadData(int page) async {
     beginLoad(page);
     try {
-      final items = await ref.read(apiClientProvider).getArticle(5);
+      final items = await ref.read(apiClientProvider).getArticle(1);
       endLoad(items);
     } catch (e) {
       endLoad(null);

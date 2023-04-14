@@ -55,13 +55,45 @@ class _Loading extends StatelessWidget {
   }
 }
 
+class _LoadingTapMore extends StatelessWidget {
+  const _LoadingTapMore();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.refresh,
+              size: 16,
+              color: Colors.blueGrey[100],
+            ),
+            const SizedBox(width: 1),
+            Text(
+              '点击加载',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.blueGrey[100],
+              ),
+            ),
+          ],
+        ));
+  }
+}
+
 PagedChildBuilderDelegate<ItemType> pagedChildDelegate<ItemType>(
   ItemWidgetBuilder<ItemType> builder, {
   WidgetBuilder? loadingView,
   WidgetBuilder? emptyView,
+  bool animateTransitions = false,
 }) =>
     PagedChildBuilderDelegate<ItemType>(
       itemBuilder: builder,
+      animateTransitions: animateTransitions,
       firstPageErrorIndicatorBuilder:
           emptyView ?? (context) => const DefaultEmptyDataView(),
       firstPageProgressIndicatorBuilder:
@@ -70,19 +102,22 @@ PagedChildBuilderDelegate<ItemType> pagedChildDelegate<ItemType>(
           emptyView ?? (context) => const DefaultEmptyDataView(),
       newPageProgressIndicatorBuilder: (_) => const _Loading(),
       noMoreItemsIndicatorBuilder: (_) => const _NoMore(),
-      newPageErrorIndicatorBuilder: (context) {
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Text(
-              '加载失败',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.blueGrey[100],
-              ),
-            ),
-          ),
-        );
-      },
+      newPageProgressManualBuilder: (_) => const _LoadingTapMore(),
+      newPageErrorIndicatorBuilder: (_) => const _LoadingTapMore(),
     );
+
+// extension PagingControllerDelegateExt on PagingController {
+//   /// 构造加载视图配置
+//   PagedChildBuilderDelegate<ItemType> delegate<ItemType>(
+//     ItemWidgetBuilder<ItemType> builder, {
+//     WidgetBuilder? loadingView,
+//     WidgetBuilder? emptyView,
+//     bool animateTransitions = false,
+//   }) =>
+//       pagedChildDelegate(
+//         builder,
+//         loadingView: loadingView,
+//         emptyView: emptyView,
+//         animateTransitions: animateTransitions,
+//       );
+// }

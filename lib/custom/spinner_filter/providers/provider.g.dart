@@ -23,7 +23,7 @@ final spinnerGroupProvider =
 typedef SpinnerGroupRef
     = AutoDisposeProviderRef<Tuple2<SpinnerFilterEntity, int>>;
 String _$spinnerFilterNotifierHash() =>
-    r'ba34767f2b6ad4f8ae5f2c99d6cd8fb4ae18095a';
+    r'cfbaa9b73f7e50ebb43549f4d26d17e77f1ee0ce';
 
 /// See also [SpinnerFilterNotifier].
 @ProviderFor(SpinnerFilterNotifier)

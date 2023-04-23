@@ -11,9 +11,9 @@ _$_MoreFilterEntity _$$_MoreFilterEntityFromJson(Map<String, dynamic> json) =>
       key: json['key'] as String,
       isRadio: json['isRadio'] as bool? ?? true,
       title: json['title'] as String? ?? '',
-      extra: $enumDecodeNullable(_$MExtraTypeEnumMap, json['extra']),
       type: $enumDecodeNullable(_$MoreContentTypeEnumMap, json['type']) ??
           MoreContentType.groupBtn,
+      extra: $enumDecodeNullable(_$MExtraTypeEnumMap, json['extra']),
       extraHolder: (json['extraHolder'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -34,8 +34,8 @@ Map<String, dynamic> _$$_MoreFilterEntityToJson(_$_MoreFilterEntity instance) =>
       'key': instance.key,
       'isRadio': instance.isRadio,
       'title': instance.title,
-      'extra': _$MExtraTypeEnumMap[instance.extra],
       'type': _$MoreContentTypeEnumMap[instance.type]!,
+      'extra': _$MExtraTypeEnumMap[instance.extra],
       'extraHolder': instance.extraHolder,
       'extraData': instance.extraData,
       'desc': instance.desc,
@@ -44,13 +44,13 @@ Map<String, dynamic> _$$_MoreFilterEntityToJson(_$_MoreFilterEntity instance) =>
       'items': instance.items,
     };
 
-const _$MExtraTypeEnumMap = {
-  MExtraType.timepicker: 'timepicker',
-};
-
 const _$MoreContentTypeEnumMap = {
   MoreContentType.groupBtn: 'groupBtn',
   MoreContentType.checkList: 'checkList',
+};
+
+const _$MExtraTypeEnumMap = {
+  MExtraType.timepicker: 'timepicker',
 };
 
 _$_MoreFilterItem _$$_MoreFilterItemFromJson(Map<String, dynamic> json) =>
@@ -58,6 +58,7 @@ _$_MoreFilterItem _$$_MoreFilterItemFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       value: json['value'],
       selected: json['selected'] as bool? ?? false,
+      isMutex: json['isMutex'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_MoreFilterItemToJson(_$_MoreFilterItem instance) =>
@@ -65,4 +66,5 @@ Map<String, dynamic> _$$_MoreFilterItemToJson(_$_MoreFilterItem instance) =>
       'name': instance.name,
       'value': instance.value,
       'selected': instance.selected,
+      'isMutex': instance.isMutex,
     };

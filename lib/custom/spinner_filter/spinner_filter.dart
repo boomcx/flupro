@@ -1,3 +1,4 @@
+import 'package:flupro/base/widgets/primary_button.dart';
 import 'package:flupro/support_files/assets.gen.dart';
 import 'package:flupro/support_files/theme.dart';
 import 'package:flutter/cupertino.dart';

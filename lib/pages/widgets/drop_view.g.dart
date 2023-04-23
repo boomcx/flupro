@@ -27,7 +27,7 @@ Map<String, dynamic> _$$_DropViewStateToJson(_$_DropViewState instance) =>
 // **************************************************************************
 
 String _$dropViewControllerHash() =>
-    r'7146961fd2edffe944b9c72b1394cd7eee1f14af';
+    r'7290a65bf2e6897043a1f112b21f8dfed7b8ce48';
 
 /// See also [DropViewController].
 @ProviderFor(DropViewController)

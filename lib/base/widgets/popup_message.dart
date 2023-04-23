@@ -17,9 +17,9 @@ class _PopupConfig {
   _PopupConfig({
     required this.context,
     // this.padding = 10,
-   required this.margin ,
-   required this.size ,
-  required  this.bgColor,
+    required this.margin,
+    required this.size,
+    required this.bgColor,
   });
 }
 
@@ -52,6 +52,8 @@ class PopupMessage extends StatefulWidget {
 class _PopupMessageState extends State<PopupMessage> {
   late _PopupConfig _config;
 
+  OverlayEntry? _entry;
+
   @override
   void initState() {
     _config = _PopupConfig(
@@ -65,43 +67,56 @@ class _PopupMessageState extends State<PopupMessage> {
     super.initState();
   }
 
+  _removeEntry() {
+    if (_entry != null) {
+      _entry!.remove();
+      _entry = null;
+    }
+  }
+
   _showText() {
     final box = context.findRenderObject() as RenderBox;
     final offset = box.localToGlobal(Offset.zero);
 
-    final follow = Align(
-      alignment: Alignment.topLeft,
-      child: SafeArea(
-        top: false,
-        bottom: false,
-        child: CustomSingleChildLayout(
-          delegate: _ChildLayoutDelegate(
-            _config,
-            target: offset & box.size,
-          ),
-          child: CustomPaint(
-            painter: _PopupMsgPainter(
-              _config,
-              target: offset & box.size,
-            ),
-            child: Container(
-              constraints: BoxConstraints(maxWidth: widget.maxWidth),
-              // color: Colors.red,
-              padding: widget.padding,
-              child: widget.content,
+    _entry = OverlayEntry(builder: (context) {
+      return Material(
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: _removeEntry,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: CustomSingleChildLayout(
+              delegate: _ChildLayoutDelegate(
+                _config,
+                target: offset & box.size,
+              ),
+              child: CustomPaint(
+                painter: _PopupMsgPainter(
+                  _config,
+                  target: offset & box.size,
+                ),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: widget.maxWidth),
+                  // color: Colors.red,
+                  padding: widget.padding,
+                  child: widget.content,
+                ),
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
 
-    return showDialog(
-      context: context,
-      barrierColor: widget.barrierColor,
-      builder: (context) {
-        return follow;
-      },
-    );
+    Overlay.of(context).insert(_entry!);
+
+    // return showDialog(
+    //   context: context,
+    //   barrierColor: widget.barrierColor,
+    //   builder: (context) {
+    //     return follow;
+    //   },
+    // );
   }
 
   @override
@@ -140,10 +155,7 @@ class _ChildLayoutDelegate extends SingleChildLayoutDelegate {
     // 默认显示在正下方
     Offset offset = Offset(
       0,
-      target.bottom +
-          config.size.height +
-          config.margin.bottom -
-          media.systemGestureInsets.top,
+      target.bottom + config.size.height + config.margin.bottom,
     );
 
     // 超出左边屏幕
@@ -162,13 +174,8 @@ class _ChildLayoutDelegate extends SingleChildLayoutDelegate {
     // 底部溢出 正上方显示
     if (target.bottom + size.height + media.padding.bottom + kToolbarHeight >
         sh) {
-      offset = Offset(
-          offset.dx,
-          target.top -
-              size.height -
-              media.systemGestureInsets.top -
-              config.margin.top -
-              config.size.height);
+      offset = Offset(offset.dx,
+          target.top - size.height - config.margin.top - config.size.height);
     }
 
     return offset;
@@ -210,19 +217,21 @@ class _PopupMsgPainter extends CustomPainter {
     // 矩形
     path.addRRect(rrect);
 
-    canvas.drawShadow(
-        Path()
-          ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(
-                rect.left - config.size.width / 2,
-                rect.top - config.size.height,
-                rect.width + config.size.width,
-                rect.height + config.size.height,
-              ),
-              const Radius.circular(4))),
-        Colors.black26,
-        5,
-        false);
+    if (config.bgColor.opacity == 1) {
+      canvas.drawShadow(
+          Path()
+            ..addRRect(RRect.fromRectAndRadius(
+                Rect.fromLTWH(
+                  rect.left - config.size.width / 2,
+                  rect.top - config.size.height,
+                  rect.width + config.size.width,
+                  rect.height + config.size.height,
+                ),
+                const Radius.circular(4))),
+          Colors.black26,
+          5,
+          false);
+    }
     canvas.drawPath(path, paint);
   }
 

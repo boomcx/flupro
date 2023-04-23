@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +8,19 @@ class SpinnerScope {
   /// 弹框视图
   final Widget child;
 
-  SpinnerScope({this.scale = 0.7, required this.child});
+  /// 视图是否包含焦点获取组件
+  final bool isMaybeFocus;
+
+  SpinnerScope({
+    this.scale = 0.7,
+    required this.child,
+    this.isMaybeFocus = true,
+  });
 }
 
 extension SpinnerBoxExt on Widget {
   /// 快速构建 `PopupBtns` builder 数组集
-  SpinnerScope entity([double scale = 0.7]) {
+  SpinnerScope scope([double scale = 0.7]) {
     return SpinnerScope(child: this, scale: scale);
   }
 
@@ -51,6 +56,9 @@ class SpinnerBoxTheme {
   // 是否显示边框
   final bool isShowBorder;
 
+  /// 页面其他部位是佛含有焦点获取的组件（如视图顶部搜索输入框）
+  final bool outsideFocus;
+
   const SpinnerBoxTheme({
     this.height = kMinInteractiveDimensionCupertino,
     this.textStyle = const TextStyle(
@@ -66,6 +74,7 @@ class SpinnerBoxTheme {
     this.bgColor = Colors.white,
     this.arrowColor = const Color(0xff9B9EAC),
     this.padding = EdgeInsets.zero,
+    this.outsideFocus = false,
   });
 
   SpinnerBoxTheme copyWith({
@@ -77,6 +86,7 @@ class SpinnerBoxTheme {
     bool? changedMark,
     bool? isShowBorder,
     EdgeInsets? padding,
+    bool? outsideFocus,
   }) {
     return SpinnerBoxTheme(
       height: height ?? this.height,
@@ -87,6 +97,7 @@ class SpinnerBoxTheme {
       changedMark: changedMark ?? this.changedMark,
       isShowBorder: isShowBorder ?? this.isShowBorder,
       padding: padding ?? this.padding,
+      outsideFocus: outsideFocus ?? this.outsideFocus,
     );
   }
 }
@@ -96,4 +107,4 @@ extension SpinnerThemeExt on SpinnerBoxTheme {
 }
 
 /// 默认配置
-const SpinnerBoxTheme defaultPopTheme = SpinnerBoxTheme();
+const SpinnerBoxTheme defaultPinnerTheme = SpinnerBoxTheme();

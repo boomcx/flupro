@@ -126,7 +126,16 @@ class SpinnerFilterNotifier extends _$SpinnerFilterNotifier {
           // 单选
           if (single) {
             items[k] = tempItem.copyWith(selected: false);
+          } else {
+            if (items[index].isMutex) {
+              items[k] = tempItem.copyWith(selected: false);
+            } else {
+              if (tempItem.isMutex) {
+                items[k] = tempItem.copyWith(selected: false);
+              }
+            }
           }
+
           // 多选
           if (index == k) {
             items[k] = tempItem.copyWith(selected: !tempItem.selected);

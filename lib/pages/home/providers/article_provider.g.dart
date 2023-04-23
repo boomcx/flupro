@@ -7,7 +7,7 @@ part of 'article_provider.dart';
 // **************************************************************************
 
 String _$articleListNotifierHash() =>
-    r'2611bec59ca1f9b4d100221aa809bb1b18405295';
+    r'38e197fd19a1da6f91c17e5ec758f292fb8cb88e';
 
 /// See also [ArticleListNotifier].
 @ProviderFor(ArticleListNotifier)

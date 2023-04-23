@@ -18,10 +18,14 @@ class PopupValueNotifier extends ValueNotifier<PopupState> {
         super(state);
 
   factory PopupValueNotifier.titles(List<String> titles) => PopupValueNotifier(
-      PopupState(items: List.of(titles), orginItems: List.of(titles)));
+        PopupState(items: List.of(titles), orginItems: List.of(titles)),
+      );
 
   final link = LayerLink();
   final GlobalKey targetKey = GlobalKey();
+
+  FocusScopeNode targetNode = FocusScopeNode();
+  FocusScopeNode followerNode = FocusScopeNode();
 
   List<String> get items => value.items;
   List<String> get orginItems => value.orginItems;
@@ -29,12 +33,12 @@ class PopupValueNotifier extends ValueNotifier<PopupState> {
   /// 保存每个选项卡对应的视图是否打开
   final List<bool> status;
 
-  /// 关闭pop
-  closeSpinner() {
+  /// Close popout
+  close() {
     updateSelected(-1);
   }
 
-  /// 设置当前选中的选项
+  /// Update the current selected index
   updateSelected(int index) {
     if (value.selected == index) {
       value.selected = -1;
@@ -44,23 +48,23 @@ class PopupValueNotifier extends ValueNotifier<PopupState> {
     notifyListeners();
   }
 
-  /// 手动更新选项文字显示
+  /// Update the title of the selected content text
   updateName(String name, {bool needClose = true}) {
     if (value.orginItems.isNotEmpty && value.selected > -1) {
       value.items[value.selected] = name;
     }
     if (needClose) {
-      closeSpinner();
+      close();
     } else {
       notifyListeners();
     }
   }
 
-  /// 重置选项显示
+  /// Clear the selected items
   reset({bool needClose = true}) {
     value.items[value.selected] = value.orginItems[value.selected];
     if (needClose) {
-      closeSpinner();
+      close();
     } else {
       notifyListeners();
     }

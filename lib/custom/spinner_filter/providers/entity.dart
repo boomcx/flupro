@@ -14,11 +14,11 @@ class SpinnerFilterEntity with _$SpinnerFilterEntity {
     /// 标题，空不显示
     @Default('') String title,
 
-    /// 额外输入类型
-    MExtraType? extra,
-
     /// 每组内容的显示风格
     @Default(MoreContentType.groupBtn) MoreContentType type,
+
+    /// 额外输入类型
+    MExtraType? extra,
 
     /// 额外输入,占位显示文字
     @Default([]) List<String> extraHolder,
@@ -53,6 +53,9 @@ class SpinnerFilterItem with _$SpinnerFilterItem {
 
     /// 是否选中
     @Default(false) bool selected,
+
+    /// 是否选互斥（选中时清空当前其他选中项，一般用于 `全部` `不限` 等合并条件项）
+    @Default(false) bool isMutex,
   }) = _MoreFilterItem;
   factory SpinnerFilterItem.fromJson(Map<String, Object?> json) =>
       _$SpinnerFilterItemFromJson(json);

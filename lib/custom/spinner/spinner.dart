@@ -7,8 +7,29 @@ import './state.dart';
 import 'route/trans_dialog.dart';
 import 'theme.dart';
 
+/// The drop dwon popout header buttons with custom popout content view
 // ignore: must_be_immutable
 class SpinnerBox extends StatefulWidget {
+  /// How to use
+  ///
+  ///  ```
+  ///  final controller = PopupValueNotifier.titles(const ['title1', 'tilte2']);
+  ///  ...
+  ///  SpinnerBox(
+  ///   controller: controller,
+  ///   children: [
+  ///     CustomWidget().heightPart,
+  ///     ...
+  ///   ],
+  ///  ),
+  /// ```
+  ///
+  ///  methods:
+  /// ```
+  ///   notifier.updateName('update-title1');
+  ///  'or' notifier.close();
+  ///  'or' notifier.reset();
+  /// ```
   SpinnerBox({
     super.key,
     required this.controller,
@@ -16,7 +37,7 @@ class SpinnerBox extends StatefulWidget {
     required List<SpinnerScope> children,
     this.prefix,
     this.suffix,
-    this.theme = defaultPopTheme,
+    this.theme = defaultPinnerTheme,
   }) {
     widgets = children;
   }
@@ -39,18 +60,34 @@ class SpinnerBox extends StatefulWidget {
   /// 视图配置
   final SpinnerBoxTheme theme;
 
+  /// How to use
+  ///
+  /// ```
+  /// SpinnerBox.builder(
+  ///    prefix: prefix,
+  ///    suffix: suffix,
+  ///    titles: const ['title1', 'tilte2'],
+  ///    builder: (notifier) => [
+  ///      CustomWidget().heightFll,
+  ///      CustomWidget().heightPart,
+  ///    ],
+  ///  )
+  /// ```
+  ///  methods:
+  /// ```
+  ///   notifier.updateName('update-title1');
+  ///  'or' notifier.close();
+  ///  'or' notifier.reset();
+  /// ```
   SpinnerBox.builder({
     super.key,
     required List<String> titles,
     required List<SpinnerScope> Function(PopupValueNotifier) builder,
     this.prefix,
     this.suffix,
-    this.theme = defaultPopTheme,
+    this.theme = defaultPinnerTheme,
   }) {
-    controller = PopupValueNotifier(PopupState(
-      items: List.of(titles),
-      orginItems: List.of(titles),
-    ));
+    controller = PopupValueNotifier.titles(titles);
     widgets = builder.call(controller);
   }
 
@@ -64,7 +101,7 @@ class _SpinnerBoxState extends State<SpinnerBox> {
   /// 当前的显示的页面路由（指定关闭当前弹框，解决焦点失活跳转页面异常）
   TransPopupRouter? _router;
 
-  // final Map<String, PopupEntity> childReposity = {};
+  // final Map<String, Popupscope> childReposity = {};
 
   @override
   void initState() {
@@ -87,10 +124,15 @@ class _SpinnerBoxState extends State<SpinnerBox> {
 
   @override
   Widget build(BuildContext context) {
-    return _CompsitedTarget(
-      notifier: _notifier,
-      widget: widget,
-      config: widget.theme,
+    return Focus(
+      onFocusChange: (value) {
+        print(Focus.of(context));
+      },
+      child: _CompsitedTarget(
+        notifier: _notifier,
+        widget: widget,
+        config: widget.theme,
+      ),
     );
   }
 
@@ -98,16 +140,16 @@ class _SpinnerBoxState extends State<SpinnerBox> {
     final selected = _notifier.value.selected;
 
     // if (childReposity[selected.toString()] == null) {
-    //   final entity = widget.builder.call(_notifier)[selected];
-    //   childReposity[selected.toString()] = entity;
+    //   final scope = widget.builder.call(_notifier)[selected];
+    //   childReposity[selected.toString()] = scope;
     // }
 
     final content = _CompositedFollower(
       ctx: context,
       notifier: _notifier,
       widget: widget,
-      // entity: widget.builder.call(_notifier)[selected],
-      entity: widget.widgets[selected],
+      // scope: widget.builder.call(_notifier)[selected],
+      scope: widget.widgets[selected],
     );
 
     _router = TransPopupRouter(
@@ -157,7 +199,7 @@ class _CompositedFollower extends StatelessWidget {
     required this.ctx,
     required PopupValueNotifier notifier,
     required this.widget,
-    required this.entity,
+    required this.scope,
   })  : _notifier = notifier,
         super(key: key) {
     final render =
@@ -173,7 +215,7 @@ class _CompositedFollower extends StatelessWidget {
   final SpinnerBox widget;
   final PopupValueNotifier _notifier;
   late final double _contentHeight;
-  final SpinnerScope entity;
+  final SpinnerScope scope;
 
   /// 显示内容
   Future show(router) {
@@ -184,7 +226,7 @@ class _CompositedFollower extends StatelessWidget {
     return Navigator.of(ctx).push(router).then((value) {
       if (_notifier.status[selected]) {
         _notifier.status[selected] = false;
-        _notifier.closeSpinner();
+        _notifier.close();
       }
     });
   }
@@ -198,9 +240,8 @@ class _CompositedFollower extends StatelessWidget {
       child: FocusScope(
         autofocus: true,
         onFocusChange: (value) {
-          /// 如果有额外的视图（输入框），抢焦点则自动关闭
-          if (!value && (widget.suffix != null || widget.prefix != null)) {
-            _notifier.closeSpinner();
+          if (!value && widget.theme.outsideFocus) {
+            _notifier.close();
           }
         },
         child: Stack(
@@ -213,9 +254,9 @@ class _CompositedFollower extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(8)),
               ),
               constraints: BoxConstraints(
-                maxHeight: _contentHeight * entity.scale,
+                maxHeight: _contentHeight * scope.scale,
               ),
-              child: entity.child,
+              child: scope.child,
             )
           ],
         ),
@@ -256,7 +297,15 @@ class _CompsitedTarget extends StatelessWidget {
               : null,
         ),
         child: Row(children: [
-          if (widget.prefix != null) widget.prefix!,
+          if (widget.prefix != null)
+            FocusScope(
+              child: widget.prefix!,
+              onFocusChange: (value) {
+                if (value) {
+                  _notifier.close();
+                }
+              },
+            ),
           ...List.generate(
             _notifier.orginItems.length,
             (index) => Expanded(
@@ -287,7 +336,15 @@ class _CompsitedTarget extends StatelessWidget {
               }),
             ),
           ),
-          if (widget.suffix != null) FocusScope(child: widget.suffix!),
+          if (widget.suffix != null)
+            FocusScope(
+              child: widget.suffix!,
+              onFocusChange: (value) {
+                if (value) {
+                  _notifier.close();
+                }
+              },
+            ),
         ]),
       ),
     );

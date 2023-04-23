@@ -29,11 +29,11 @@ mixin _$SpinnerFilterEntity {
   /// 标题，空不显示
   String get title => throw _privateConstructorUsedError;
 
-  /// 额外输入类型
-  MExtraType? get extra => throw _privateConstructorUsedError;
-
   /// 每组内容的显示风格
   MoreContentType get type => throw _privateConstructorUsedError;
+
+  /// 额外输入类型
+  MExtraType? get extra => throw _privateConstructorUsedError;
 
   /// 额外输入,占位显示文字
   List<String> get extraHolder => throw _privateConstructorUsedError;
@@ -69,8 +69,8 @@ abstract class $SpinnerFilterEntityCopyWith<$Res> {
       {String key,
       bool isRadio,
       String title,
-      MExtraType? extra,
       MoreContentType type,
+      MExtraType? extra,
       List<String> extraHolder,
       dynamic extraData,
       String desc,
@@ -95,8 +95,8 @@ class _$SpinnerFilterEntityCopyWithImpl<$Res, $Val extends SpinnerFilterEntity>
     Object? key = null,
     Object? isRadio = null,
     Object? title = null,
-    Object? extra = freezed,
     Object? type = null,
+    Object? extra = freezed,
     Object? extraHolder = null,
     Object? extraData = freezed,
     Object? desc = null,
@@ -117,14 +117,14 @@ class _$SpinnerFilterEntityCopyWithImpl<$Res, $Val extends SpinnerFilterEntity>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
-          ? _value.extra
-          : extra // ignore: cast_nullable_to_non_nullable
-              as MExtraType?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MoreContentType,
+      extra: freezed == extra
+          ? _value.extra
+          : extra // ignore: cast_nullable_to_non_nullable
+              as MExtraType?,
       extraHolder: null == extraHolder
           ? _value.extraHolder
           : extraHolder // ignore: cast_nullable_to_non_nullable
@@ -165,8 +165,8 @@ abstract class _$$_MoreFilterEntityCopyWith<$Res>
       {String key,
       bool isRadio,
       String title,
-      MExtraType? extra,
       MoreContentType type,
+      MExtraType? extra,
       List<String> extraHolder,
       dynamic extraData,
       String desc,
@@ -189,8 +189,8 @@ class __$$_MoreFilterEntityCopyWithImpl<$Res>
     Object? key = null,
     Object? isRadio = null,
     Object? title = null,
-    Object? extra = freezed,
     Object? type = null,
+    Object? extra = freezed,
     Object? extraHolder = null,
     Object? extraData = freezed,
     Object? desc = null,
@@ -211,14 +211,14 @@ class __$$_MoreFilterEntityCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      extra: freezed == extra
-          ? _value.extra
-          : extra // ignore: cast_nullable_to_non_nullable
-              as MExtraType?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MoreContentType,
+      extra: freezed == extra
+          ? _value.extra
+          : extra // ignore: cast_nullable_to_non_nullable
+              as MExtraType?,
       extraHolder: null == extraHolder
           ? _value._extraHolder
           : extraHolder // ignore: cast_nullable_to_non_nullable
@@ -254,8 +254,8 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
       {required this.key,
       this.isRadio = true,
       this.title = '',
-      this.extra,
       this.type = MoreContentType.groupBtn,
+      this.extra,
       final List<String> extraHolder = const [],
       this.extraData,
       this.desc = '',
@@ -282,14 +282,14 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
   @JsonKey()
   final String title;
 
-  /// 额外输入类型
-  @override
-  final MExtraType? extra;
-
   /// 每组内容的显示风格
   @override
   @JsonKey()
   final MoreContentType type;
+
+  /// 额外输入类型
+  @override
+  final MExtraType? extra;
 
   /// 额外输入,占位显示文字
   final List<String> _extraHolder;
@@ -336,7 +336,7 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
 
   @override
   String toString() {
-    return 'SpinnerFilterEntity(key: $key, isRadio: $isRadio, title: $title, extra: $extra, type: $type, extraHolder: $extraHolder, extraData: $extraData, desc: $desc, isVip: $isVip, isVipIcon: $isVipIcon, items: $items)';
+    return 'SpinnerFilterEntity(key: $key, isRadio: $isRadio, title: $title, type: $type, extra: $extra, extraHolder: $extraHolder, extraData: $extraData, desc: $desc, isVip: $isVip, isVipIcon: $isVipIcon, items: $items)';
   }
 
   @override
@@ -347,8 +347,8 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
             (identical(other.key, key) || other.key == key) &&
             (identical(other.isRadio, isRadio) || other.isRadio == isRadio) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.extra, extra) || other.extra == extra) &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.extra, extra) || other.extra == extra) &&
             const DeepCollectionEquality()
                 .equals(other._extraHolder, _extraHolder) &&
             const DeepCollectionEquality().equals(other.extraData, extraData) &&
@@ -366,8 +366,8 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
       key,
       isRadio,
       title,
-      extra,
       type,
+      extra,
       const DeepCollectionEquality().hash(_extraHolder),
       const DeepCollectionEquality().hash(extraData),
       desc,
@@ -394,8 +394,8 @@ abstract class _MoreFilterEntity implements SpinnerFilterEntity {
       {required final String key,
       final bool isRadio,
       final String title,
-      final MExtraType? extra,
       final MoreContentType type,
+      final MExtraType? extra,
       final List<String> extraHolder,
       final dynamic extraData,
       final String desc,
@@ -420,12 +420,12 @@ abstract class _MoreFilterEntity implements SpinnerFilterEntity {
   String get title;
   @override
 
-  /// 额外输入类型
-  MExtraType? get extra;
-  @override
-
   /// 每组内容的显示风格
   MoreContentType get type;
+  @override
+
+  /// 额外输入类型
+  MExtraType? get extra;
   @override
 
   /// 额外输入,占位显示文字
@@ -471,6 +471,9 @@ mixin _$SpinnerFilterItem {
   /// 是否选中
   bool get selected => throw _privateConstructorUsedError;
 
+  /// 是否选互斥（选中时清空当前其他选中项，一般用于 `全部` `不限` 等合并条件项）
+  bool get isMutex => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SpinnerFilterItemCopyWith<SpinnerFilterItem> get copyWith =>
@@ -483,7 +486,7 @@ abstract class $SpinnerFilterItemCopyWith<$Res> {
           SpinnerFilterItem value, $Res Function(SpinnerFilterItem) then) =
       _$SpinnerFilterItemCopyWithImpl<$Res, SpinnerFilterItem>;
   @useResult
-  $Res call({String name, dynamic value, bool selected});
+  $Res call({String name, dynamic value, bool selected, bool isMutex});
 }
 
 /// @nodoc
@@ -502,6 +505,7 @@ class _$SpinnerFilterItemCopyWithImpl<$Res, $Val extends SpinnerFilterItem>
     Object? name = null,
     Object? value = freezed,
     Object? selected = null,
+    Object? isMutex = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -516,6 +520,10 @@ class _$SpinnerFilterItemCopyWithImpl<$Res, $Val extends SpinnerFilterItem>
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as bool,
+      isMutex: null == isMutex
+          ? _value.isMutex
+          : isMutex // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -528,7 +536,7 @@ abstract class _$$_MoreFilterItemCopyWith<$Res>
       __$$_MoreFilterItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, dynamic value, bool selected});
+  $Res call({String name, dynamic value, bool selected, bool isMutex});
 }
 
 /// @nodoc
@@ -545,6 +553,7 @@ class __$$_MoreFilterItemCopyWithImpl<$Res>
     Object? name = null,
     Object? value = freezed,
     Object? selected = null,
+    Object? isMutex = null,
   }) {
     return _then(_$_MoreFilterItem(
       name: null == name
@@ -559,6 +568,10 @@ class __$$_MoreFilterItemCopyWithImpl<$Res>
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as bool,
+      isMutex: null == isMutex
+          ? _value.isMutex
+          : isMutex // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -567,7 +580,10 @@ class __$$_MoreFilterItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MoreFilterItem implements _MoreFilterItem {
   const _$_MoreFilterItem(
-      {required this.name, this.value, this.selected = false});
+      {required this.name,
+      this.value,
+      this.selected = false,
+      this.isMutex = false});
 
   factory _$_MoreFilterItem.fromJson(Map<String, dynamic> json) =>
       _$$_MoreFilterItemFromJson(json);
@@ -585,9 +601,14 @@ class _$_MoreFilterItem implements _MoreFilterItem {
   @JsonKey()
   final bool selected;
 
+  /// 是否选互斥（选中时清空当前其他选中项，一般用于 `全部` `不限` 等合并条件项）
+  @override
+  @JsonKey()
+  final bool isMutex;
+
   @override
   String toString() {
-    return 'SpinnerFilterItem(name: $name, value: $value, selected: $selected)';
+    return 'SpinnerFilterItem(name: $name, value: $value, selected: $selected, isMutex: $isMutex)';
   }
 
   @override
@@ -598,13 +619,14 @@ class _$_MoreFilterItem implements _MoreFilterItem {
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other.value, value) &&
             (identical(other.selected, selected) ||
-                other.selected == selected));
+                other.selected == selected) &&
+            (identical(other.isMutex, isMutex) || other.isMutex == isMutex));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(value), selected);
+  int get hashCode => Object.hash(runtimeType, name,
+      const DeepCollectionEquality().hash(value), selected, isMutex);
 
   @JsonKey(ignore: true)
   @override
@@ -624,7 +646,8 @@ abstract class _MoreFilterItem implements SpinnerFilterItem {
   const factory _MoreFilterItem(
       {required final String name,
       final dynamic value,
-      final bool selected}) = _$_MoreFilterItem;
+      final bool selected,
+      final bool isMutex}) = _$_MoreFilterItem;
 
   factory _MoreFilterItem.fromJson(Map<String, dynamic> json) =
       _$_MoreFilterItem.fromJson;
@@ -641,6 +664,10 @@ abstract class _MoreFilterItem implements SpinnerFilterItem {
 
   /// 是否选中
   bool get selected;
+  @override
+
+  /// 是否选互斥（选中时清空当前其他选中项，一般用于 `全部` `不限` 等合并条件项）
+  bool get isMutex;
   @override
   @JsonKey(ignore: true)
   _$$_MoreFilterItemCopyWith<_$_MoreFilterItem> get copyWith =>

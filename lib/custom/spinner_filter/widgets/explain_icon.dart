@@ -10,6 +10,7 @@ class _ExplainIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appColors = context.appColors;
+
     return PopupMessage(
       bgColor: Colors.black54,
       content: Text(

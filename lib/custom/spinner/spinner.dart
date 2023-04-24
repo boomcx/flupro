@@ -124,15 +124,10 @@ class _SpinnerBoxState extends State<SpinnerBox> {
 
   @override
   Widget build(BuildContext context) {
-    return Focus(
-      onFocusChange: (value) {
-        print(Focus.of(context));
-      },
-      child: _CompsitedTarget(
-        notifier: _notifier,
-        widget: widget,
-        config: widget.theme,
-      ),
+    return _CompsitedTarget(
+      notifier: _notifier,
+      widget: widget,
+      config: widget.theme,
     );
   }
 

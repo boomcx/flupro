@@ -80,6 +80,7 @@ class _PopupMessageState extends State<PopupMessage> {
 
     _entry = OverlayEntry(builder: (context) {
       return Material(
+        color: Colors.transparent,
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: _removeEntry,

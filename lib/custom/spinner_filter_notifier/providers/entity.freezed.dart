@@ -32,15 +32,6 @@ mixin _$SpinnerFilterEntity {
   /// 每组内容的显示风格
   MoreContentType get type => throw _privateConstructorUsedError;
 
-  /// 额外输入类型
-  MExtraType? get extra => throw _privateConstructorUsedError;
-
-  /// 额外输入,占位显示文字
-  List<String> get extraHolder => throw _privateConstructorUsedError;
-
-  /// 额外输入类型,数据存储，与`MoreFilterItem-value `一致
-  dynamic get extraData => throw _privateConstructorUsedError;
-
   /// 问号描述，点击显示内容
   String get desc => throw _privateConstructorUsedError;
 
@@ -70,9 +61,6 @@ abstract class $SpinnerFilterEntityCopyWith<$Res> {
       bool isRadio,
       String title,
       MoreContentType type,
-      MExtraType? extra,
-      List<String> extraHolder,
-      dynamic extraData,
       String desc,
       bool isVip,
       bool isVipIcon,
@@ -96,9 +84,6 @@ class _$SpinnerFilterEntityCopyWithImpl<$Res, $Val extends SpinnerFilterEntity>
     Object? isRadio = null,
     Object? title = null,
     Object? type = null,
-    Object? extra = freezed,
-    Object? extraHolder = null,
-    Object? extraData = freezed,
     Object? desc = null,
     Object? isVip = null,
     Object? isVipIcon = null,
@@ -121,18 +106,6 @@ class _$SpinnerFilterEntityCopyWithImpl<$Res, $Val extends SpinnerFilterEntity>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MoreContentType,
-      extra: freezed == extra
-          ? _value.extra
-          : extra // ignore: cast_nullable_to_non_nullable
-              as MExtraType?,
-      extraHolder: null == extraHolder
-          ? _value.extraHolder
-          : extraHolder // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      extraData: freezed == extraData
-          ? _value.extraData
-          : extraData // ignore: cast_nullable_to_non_nullable
-              as dynamic,
       desc: null == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
@@ -166,9 +139,6 @@ abstract class _$$_MoreFilterEntityCopyWith<$Res>
       bool isRadio,
       String title,
       MoreContentType type,
-      MExtraType? extra,
-      List<String> extraHolder,
-      dynamic extraData,
       String desc,
       bool isVip,
       bool isVipIcon,
@@ -190,9 +160,6 @@ class __$$_MoreFilterEntityCopyWithImpl<$Res>
     Object? isRadio = null,
     Object? title = null,
     Object? type = null,
-    Object? extra = freezed,
-    Object? extraHolder = null,
-    Object? extraData = freezed,
     Object? desc = null,
     Object? isVip = null,
     Object? isVipIcon = null,
@@ -215,18 +182,6 @@ class __$$_MoreFilterEntityCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MoreContentType,
-      extra: freezed == extra
-          ? _value.extra
-          : extra // ignore: cast_nullable_to_non_nullable
-              as MExtraType?,
-      extraHolder: null == extraHolder
-          ? _value._extraHolder
-          : extraHolder // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      extraData: freezed == extraData
-          ? _value.extraData
-          : extraData // ignore: cast_nullable_to_non_nullable
-              as dynamic,
       desc: null == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
@@ -249,21 +204,19 @@ class __$$_MoreFilterEntityCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MoreFilterEntity implements _MoreFilterEntity {
+class _$_MoreFilterEntity
+    with DiagnosticableTreeMixin
+    implements _MoreFilterEntity {
   const _$_MoreFilterEntity(
       {required this.key,
       this.isRadio = true,
       this.title = '',
       this.type = MoreContentType.groupBtn,
-      this.extra,
-      final List<String> extraHolder = const [],
-      this.extraData,
       this.desc = '',
       this.isVip = false,
       this.isVipIcon = false,
       final List<SpinnerFilterItem> items = const []})
-      : _extraHolder = extraHolder,
-        _items = items;
+      : _items = items;
 
   factory _$_MoreFilterEntity.fromJson(Map<String, dynamic> json) =>
       _$$_MoreFilterEntityFromJson(json);
@@ -286,26 +239,6 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
   @override
   @JsonKey()
   final MoreContentType type;
-
-  /// 额外输入类型
-  @override
-  final MExtraType? extra;
-
-  /// 额外输入,占位显示文字
-  final List<String> _extraHolder;
-
-  /// 额外输入,占位显示文字
-  @override
-  @JsonKey()
-  List<String> get extraHolder {
-    if (_extraHolder is EqualUnmodifiableListView) return _extraHolder;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_extraHolder);
-  }
-
-  /// 额外输入类型,数据存储，与`MoreFilterItem-value `一致
-  @override
-  final dynamic extraData;
 
   /// 问号描述，点击显示内容
   @override
@@ -335,8 +268,23 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
   }
 
   @override
-  String toString() {
-    return 'SpinnerFilterEntity(key: $key, isRadio: $isRadio, title: $title, type: $type, extra: $extra, extraHolder: $extraHolder, extraData: $extraData, desc: $desc, isVip: $isVip, isVipIcon: $isVipIcon, items: $items)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SpinnerFilterEntity(key: $key, isRadio: $isRadio, title: $title, type: $type, desc: $desc, isVip: $isVip, isVipIcon: $isVipIcon, items: $items)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SpinnerFilterEntity'))
+      ..add(DiagnosticsProperty('key', key))
+      ..add(DiagnosticsProperty('isRadio', isRadio))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('desc', desc))
+      ..add(DiagnosticsProperty('isVip', isVip))
+      ..add(DiagnosticsProperty('isVipIcon', isVipIcon))
+      ..add(DiagnosticsProperty('items', items));
   }
 
   @override
@@ -348,10 +296,6 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
             (identical(other.isRadio, isRadio) || other.isRadio == isRadio) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.extra, extra) || other.extra == extra) &&
-            const DeepCollectionEquality()
-                .equals(other._extraHolder, _extraHolder) &&
-            const DeepCollectionEquality().equals(other.extraData, extraData) &&
             (identical(other.desc, desc) || other.desc == desc) &&
             (identical(other.isVip, isVip) || other.isVip == isVip) &&
             (identical(other.isVipIcon, isVipIcon) ||
@@ -361,19 +305,8 @@ class _$_MoreFilterEntity implements _MoreFilterEntity {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      key,
-      isRadio,
-      title,
-      type,
-      extra,
-      const DeepCollectionEquality().hash(_extraHolder),
-      const DeepCollectionEquality().hash(extraData),
-      desc,
-      isVip,
-      isVipIcon,
-      const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(runtimeType, key, isRadio, title, type, desc,
+      isVip, isVipIcon, const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
   @override
@@ -395,9 +328,6 @@ abstract class _MoreFilterEntity implements SpinnerFilterEntity {
       final bool isRadio,
       final String title,
       final MoreContentType type,
-      final MExtraType? extra,
-      final List<String> extraHolder,
-      final dynamic extraData,
       final String desc,
       final bool isVip,
       final bool isVipIcon,
@@ -422,18 +352,6 @@ abstract class _MoreFilterEntity implements SpinnerFilterEntity {
 
   /// 每组内容的显示风格
   MoreContentType get type;
-  @override
-
-  /// 额外输入类型
-  MExtraType? get extra;
-  @override
-
-  /// 额外输入,占位显示文字
-  List<String> get extraHolder;
-  @override
-
-  /// 额外输入类型,数据存储，与`MoreFilterItem-value `一致
-  dynamic get extraData;
   @override
 
   /// 问号描述，点击显示内容
@@ -578,7 +496,9 @@ class __$$_MoreFilterItemCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MoreFilterItem implements _MoreFilterItem {
+class _$_MoreFilterItem
+    with DiagnosticableTreeMixin
+    implements _MoreFilterItem {
   const _$_MoreFilterItem(
       {required this.name,
       this.value,
@@ -607,8 +527,19 @@ class _$_MoreFilterItem implements _MoreFilterItem {
   final bool isMutex;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SpinnerFilterItem(name: $name, value: $value, selected: $selected, isMutex: $isMutex)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SpinnerFilterItem'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('value', value))
+      ..add(DiagnosticsProperty('selected', selected))
+      ..add(DiagnosticsProperty('isMutex', isMutex));
   }
 
   @override

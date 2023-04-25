@@ -22,11 +22,11 @@ mixin _$SpinnerFilterState {
   /// `false` 只有点击确认才关闭
   bool get singleConditionAndSingleSelect => throw _privateConstructorUsedError;
 
-  /// 是否完成选择，用增量表示  increment++
-  int get increment => throw _privateConstructorUsedError;
+  /// 是否完成选择
+  bool get isCompleted => throw _privateConstructorUsedError;
 
   /// 原始数据
-  List<SpinnerFilterEntity> get items => throw _privateConstructorUsedError;
+  List<EntityNotifier> get items => throw _privateConstructorUsedError;
 
   /// 选中数据
   bool get isInit => throw _privateConstructorUsedError;
@@ -44,8 +44,8 @@ abstract class $SpinnerFilterStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool singleConditionAndSingleSelect,
-      int increment,
-      List<SpinnerFilterEntity> items,
+      bool isCompleted,
+      List<EntityNotifier> items,
       bool isInit});
 }
 
@@ -63,7 +63,7 @@ class _$SpinnerFilterStateCopyWithImpl<$Res, $Val extends SpinnerFilterState>
   @override
   $Res call({
     Object? singleConditionAndSingleSelect = null,
-    Object? increment = null,
+    Object? isCompleted = null,
     Object? items = null,
     Object? isInit = null,
   }) {
@@ -72,14 +72,14 @@ class _$SpinnerFilterStateCopyWithImpl<$Res, $Val extends SpinnerFilterState>
           ? _value.singleConditionAndSingleSelect
           : singleConditionAndSingleSelect // ignore: cast_nullable_to_non_nullable
               as bool,
-      increment: null == increment
-          ? _value.increment
-          : increment // ignore: cast_nullable_to_non_nullable
-              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<SpinnerFilterEntity>,
+              as List<EntityNotifier>,
       isInit: null == isInit
           ? _value.isInit
           : isInit // ignore: cast_nullable_to_non_nullable
@@ -98,8 +98,8 @@ abstract class _$$_SpinnerFilterStateCopyWith<$Res>
   @useResult
   $Res call(
       {bool singleConditionAndSingleSelect,
-      int increment,
-      List<SpinnerFilterEntity> items,
+      bool isCompleted,
+      List<EntityNotifier> items,
       bool isInit});
 }
 
@@ -115,7 +115,7 @@ class __$$_SpinnerFilterStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? singleConditionAndSingleSelect = null,
-    Object? increment = null,
+    Object? isCompleted = null,
     Object? items = null,
     Object? isInit = null,
   }) {
@@ -124,14 +124,14 @@ class __$$_SpinnerFilterStateCopyWithImpl<$Res>
           ? _value.singleConditionAndSingleSelect
           : singleConditionAndSingleSelect // ignore: cast_nullable_to_non_nullable
               as bool,
-      increment: null == increment
-          ? _value.increment
-          : increment // ignore: cast_nullable_to_non_nullable
-              as int,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<SpinnerFilterEntity>,
+              as List<EntityNotifier>,
       isInit: null == isInit
           ? _value.isInit
           : isInit // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ class __$$_SpinnerFilterStateCopyWithImpl<$Res>
 class _$_SpinnerFilterState implements _SpinnerFilterState {
   const _$_SpinnerFilterState(
       {this.singleConditionAndSingleSelect = false,
-      this.increment = 0,
-      final List<SpinnerFilterEntity> items = const [],
+      this.isCompleted = false,
+      final List<EntityNotifier> items = const [],
       this.isInit = false})
       : _items = items;
 
@@ -158,18 +158,18 @@ class _$_SpinnerFilterState implements _SpinnerFilterState {
   @JsonKey()
   final bool singleConditionAndSingleSelect;
 
-  /// 是否完成选择，用增量表示  increment++
+  /// 是否完成选择
   @override
   @JsonKey()
-  final int increment;
+  final bool isCompleted;
 
   /// 原始数据
-  final List<SpinnerFilterEntity> _items;
+  final List<EntityNotifier> _items;
 
   /// 原始数据
   @override
   @JsonKey()
-  List<SpinnerFilterEntity> get items {
+  List<EntityNotifier> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -182,7 +182,7 @@ class _$_SpinnerFilterState implements _SpinnerFilterState {
 
   @override
   String toString() {
-    return 'SpinnerFilterState(singleConditionAndSingleSelect: $singleConditionAndSingleSelect, increment: $increment, items: $items, isInit: $isInit)';
+    return 'SpinnerFilterState(singleConditionAndSingleSelect: $singleConditionAndSingleSelect, isCompleted: $isCompleted, items: $items, isInit: $isInit)';
   }
 
   @override
@@ -194,15 +194,15 @@ class _$_SpinnerFilterState implements _SpinnerFilterState {
                     singleConditionAndSingleSelect) ||
                 other.singleConditionAndSingleSelect ==
                     singleConditionAndSingleSelect) &&
-            (identical(other.increment, increment) ||
-                other.increment == increment) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.isInit, isInit) || other.isInit == isInit));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, singleConditionAndSingleSelect,
-      increment, const DeepCollectionEquality().hash(_items), isInit);
+      isCompleted, const DeepCollectionEquality().hash(_items), isInit);
 
   @JsonKey(ignore: true)
   @override
@@ -215,8 +215,8 @@ class _$_SpinnerFilterState implements _SpinnerFilterState {
 abstract class _SpinnerFilterState implements SpinnerFilterState {
   const factory _SpinnerFilterState(
       {final bool singleConditionAndSingleSelect,
-      final int increment,
-      final List<SpinnerFilterEntity> items,
+      final bool isCompleted,
+      final List<EntityNotifier> items,
       final bool isInit}) = _$_SpinnerFilterState;
 
   @override
@@ -228,12 +228,12 @@ abstract class _SpinnerFilterState implements SpinnerFilterState {
   bool get singleConditionAndSingleSelect;
   @override
 
-  /// 是否完成选择，用增量表示  increment++
-  int get increment;
+  /// 是否完成选择
+  bool get isCompleted;
   @override
 
   /// 原始数据
-  List<SpinnerFilterEntity> get items;
+  List<EntityNotifier> get items;
   @override
 
   /// 选中数据

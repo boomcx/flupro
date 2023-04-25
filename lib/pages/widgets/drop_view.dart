@@ -1,7 +1,7 @@
 import 'package:flupro/app.dart';
 import 'package:flupro/base/widgets/app_bar.dart';
 import 'package:flupro/custom/spinner/spinner.dart';
-import 'package:flupro/custom/spinner_filter/spinner_filter.dart';
+import 'package:flupro/custom/spinner_filter_notifier/spinner_filter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -23,51 +23,51 @@ class DropView extends ConsumerWidget {
         child: Column(
           children: [
             TextField(),
-            // const _Title(name: 'children构建'),
-            // SpinnerBox(
-            //   controller: controller,
-            //   children: [
-            //     SpinnerFilter(
-            //       data: [
-            //         SpinnerFilterEntity(
-            //             key: 'year',
-            //             type: MoreContentType.checkList,
-            //             items: [
-            //               const SpinnerFilterItem(name: '不限', value: ''),
-            //               ...List.generate(5, (index) {
-            //                 final year =
-            //                     (DateTime.now().year - index).toString();
-            //                 return SpinnerFilterItem(name: year, value: year);
-            //               }),
-            //             ])
-            //       ],
-            //       onCompleted: (result, name, data) {
-            //         controller.updateName(name);
-            //       },
-            //     ).heightPart,
-            //     Consumer(
-            //       builder: (context, ref, child) {
-            //         final data = ref.watch(dropViewControllerProvider
-            //             .select((value) => value.years));
-            //         return SpinnerFilter(
-            //           data: data,
-            //           onCompleted: (result, name, data) {
-            //             controller.updateName(name);
-            //             ref
-            //                 .read(dropViewControllerProvider.notifier)
-            //                 .updateYears(data);
-            //           },
-            //         );
-            //       },
-            //     ).heightPart,
-            //   ],
-            // ),
-            // const _GroupView('builder构建'),
-            // const _GroupView(
-            //   '并排其他组件',
-            //   suffix: Text('尾部视图'),
-            //   prefix: Text('前置视图'),
-            // ),
+            const _Title(name: 'children构建'),
+            SpinnerBox(
+              controller: controller,
+              children: [
+                SpinnerFilter(
+                  data: [
+                    SpinnerFilterEntity(
+                        key: 'year',
+                        type: MoreContentType.checkList,
+                        items: [
+                          const SpinnerFilterItem(name: '不限', value: ''),
+                          ...List.generate(5, (index) {
+                            final year =
+                                (DateTime.now().year - index).toString();
+                            return SpinnerFilterItem(name: year, value: year);
+                          }),
+                        ])
+                  ],
+                  onCompleted: (result, name, data) {
+                    controller.updateName(name);
+                  },
+                ).heightPart,
+                Consumer(
+                  builder: (context, ref, child) {
+                    final data = ref.watch(dropViewControllerProvider
+                        .select((value) => value.years));
+                    return SpinnerFilter(
+                      data: data,
+                      onCompleted: (result, name, data) {
+                        controller.updateName(name);
+                        ref
+                            .read(dropViewControllerProvider.notifier)
+                            .updateYears(data);
+                      },
+                    );
+                  },
+                ).heightPart,
+              ],
+            ),
+            const _GroupView('builder构建'),
+            const _GroupView(
+              '并排其他组件',
+              suffix: Text('尾部视图'),
+              prefix: Text('前置视图'),
+            ),
             _GroupView(
               '并排输入框（焦点脱离）',
               prefix: Container(
@@ -280,7 +280,7 @@ class DropViewController extends _$DropViewController {
 //   }
 // }
 
-final def = [
+var def = [
   SpinnerFilterEntity(key: 'group1', title: '分组1-多选', isRadio: false, items: [
     const SpinnerFilterItem(name: '不限', value: '', isMutex: true),
     ...List.generate(10, (index) {

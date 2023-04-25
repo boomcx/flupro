@@ -13,12 +13,6 @@ _$_MoreFilterEntity _$$_MoreFilterEntityFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String? ?? '',
       type: $enumDecodeNullable(_$MoreContentTypeEnumMap, json['type']) ??
           MoreContentType.groupBtn,
-      extra: $enumDecodeNullable(_$MExtraTypeEnumMap, json['extra']),
-      extraHolder: (json['extraHolder'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      extraData: json['extraData'],
       desc: json['desc'] as String? ?? '',
       isVip: json['isVip'] as bool? ?? false,
       isVipIcon: json['isVipIcon'] as bool? ?? false,
@@ -35,9 +29,6 @@ Map<String, dynamic> _$$_MoreFilterEntityToJson(_$_MoreFilterEntity instance) =>
       'isRadio': instance.isRadio,
       'title': instance.title,
       'type': _$MoreContentTypeEnumMap[instance.type]!,
-      'extra': _$MExtraTypeEnumMap[instance.extra],
-      'extraHolder': instance.extraHolder,
-      'extraData': instance.extraData,
       'desc': instance.desc,
       'isVip': instance.isVip,
       'isVipIcon': instance.isVipIcon,
@@ -47,10 +38,6 @@ Map<String, dynamic> _$$_MoreFilterEntityToJson(_$_MoreFilterEntity instance) =>
 const _$MoreContentTypeEnumMap = {
   MoreContentType.groupBtn: 'groupBtn',
   MoreContentType.checkList: 'checkList',
-};
-
-const _$MExtraTypeEnumMap = {
-  MExtraType.timepicker: 'timepicker',
 };
 
 _$_MoreFilterItem _$$_MoreFilterItemFromJson(Map<String, dynamic> json) =>

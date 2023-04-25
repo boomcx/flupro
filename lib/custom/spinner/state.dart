@@ -34,7 +34,7 @@ class PopupValueNotifier extends ValueNotifier<PopupState> {
   final List<bool> status;
 
   /// Close popout
-  close() {
+  closed() {
     updateSelected(-1);
   }
 
@@ -50,11 +50,13 @@ class PopupValueNotifier extends ValueNotifier<PopupState> {
 
   /// Update the title of the selected content text
   updateName(String name, {bool needClose = true}) {
-    if (value.orginItems.isNotEmpty && value.selected > -1) {
+    if (name.isEmpty || name == '不限' || name == '全部') {
+      value.items[value.selected] = value.orginItems[value.selected];
+    } else if (value.orginItems.isNotEmpty && value.selected > -1) {
       value.items[value.selected] = name;
     }
     if (needClose) {
-      close();
+      closed();
     } else {
       notifyListeners();
     }
@@ -64,7 +66,7 @@ class PopupValueNotifier extends ValueNotifier<PopupState> {
   reset({bool needClose = true}) {
     value.items[value.selected] = value.orginItems[value.selected];
     if (needClose) {
-      close();
+      closed();
     } else {
       notifyListeners();
     }

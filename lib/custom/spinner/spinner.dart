@@ -221,7 +221,7 @@ class _CompositedFollower extends StatelessWidget {
     return Navigator.of(ctx).push(router).then((value) {
       if (_notifier.status[selected]) {
         _notifier.status[selected] = false;
-        _notifier.close();
+        _notifier.closed();
       }
     });
   }
@@ -236,7 +236,7 @@ class _CompositedFollower extends StatelessWidget {
         autofocus: true,
         onFocusChange: (value) {
           if (!value && widget.theme.outsideFocus) {
-            _notifier.close();
+            _notifier.closed();
           }
         },
         child: Stack(
@@ -297,7 +297,7 @@ class _CompsitedTarget extends StatelessWidget {
               child: widget.prefix!,
               onFocusChange: (value) {
                 if (value) {
-                  _notifier.close();
+                  _notifier.closed();
                 }
               },
             ),
@@ -336,7 +336,7 @@ class _CompsitedTarget extends StatelessWidget {
               child: widget.suffix!,
               onFocusChange: (value) {
                 if (value) {
-                  _notifier.close();
+                  _notifier.closed();
                 }
               },
             ),

@@ -5,6 +5,7 @@ import 'package:flupro/custom/spinner_filter_notifier/spinner_filter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tuple/tuple.dart';
 part 'drop_view.freezed.dart';
 part 'drop_view.g.dart';
 
@@ -13,7 +14,8 @@ class DropView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = PopupValueNotifier.titles(const ['单列表', '状态保留']);
+    final textEditing = TextEditingController();
+    final controller = PopupValueNotifier.titles(const ['单列表', '传入自定义视图']);
     final name =
         ref.watch(dropViewControllerProvider.select((value) => value.name));
 
@@ -22,7 +24,9 @@ class DropView extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TextField(),
+            const TextField(
+              decoration: InputDecoration(hintText: 'input hint'),
+            ),
             const _Title(name: 'children构建'),
             SpinnerBox(
               controller: controller,
@@ -51,8 +55,29 @@ class DropView extends ConsumerWidget {
                         .select((value) => value.years));
                     return SpinnerFilter(
                       data: data,
+                      attachment: [
+                        const Tuple2(-1, Text('attachment1')),
+                        Tuple2(
+                            2,
+                            Container(
+                              height: 130,
+                              color: Colors.red,
+                              child: const Text('attachment2'),
+                            )),
+                        Tuple2(
+                          2,
+                          TextField(
+                            controller: textEditing,
+                            decoration:
+                                const InputDecoration(hintText: 'input hint'),
+                          ),
+                        ),
+                      ],
+                      onReseted: () {
+                        textEditing.clear();
+                      },
                       onCompleted: (result, name, data) {
-                        controller.updateName(name);
+                        controller.updateName(name + textEditing.text);
                         ref
                             .read(dropViewControllerProvider.notifier)
                             .updateYears(data);

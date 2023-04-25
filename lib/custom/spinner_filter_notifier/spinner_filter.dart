@@ -15,17 +15,37 @@ part './widgets/group.dart';
 part './widgets/check_list_item.dart';
 part './widgets/explain_icon.dart';
 
+typedef SpinnerFilterResponse = Function(
+  Map<String, List> result,
+  String name,
+  List<SpinnerFilterEntity> data,
+);
+
 class SpinnerFilter extends StatefulWidget {
   const SpinnerFilter({
     super.key,
     required this.data,
     required this.onCompleted,
+    this.onReseted,
+    this.attachment = const [],
   });
 
+  /// 渲染数据
   final List<SpinnerFilterEntity> data;
-  final Function(
-          Map<String, List> result, String name, List<SpinnerFilterEntity> data)
-      onCompleted;
+
+  /// 重置回调
+  final VoidCallback? onReseted;
+
+  /// 选择完成回调
+  /// `result` 返回结果 key.values
+  /// `name` 选中标题拼接
+  /// `data` 更新重置的原始数据（同步选中状态）
+  final SpinnerFilterResponse onCompleted;
+
+  /// 外部出入的自定义组件
+  /// `int` 期望组件位置 在`data`排序基础上计算 默认0开始
+  /// `Widget` 组件
+  final List<AttachmentEntity> attachment;
 
   @override
   State<SpinnerFilter> createState() => _SpinnerFilterState();
@@ -38,7 +58,11 @@ class _SpinnerFilterState extends State<SpinnerFilter> {
   void initState() {
     super.initState();
 
-    notifier = SpinnerFilterNotifier.init(widget.data);
+    notifier = SpinnerFilterNotifier.init(
+      widget.data,
+      widget.attachment,
+      widget.onReseted,
+    );
 
     notifier.addListener(() {
       if (notifier.value.isCompleted) {
@@ -60,7 +84,7 @@ class _SpinnerFilterState extends State<SpinnerFilter> {
   void didUpdateWidget(covariant SpinnerFilter oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.data != widget.data) {
-      notifier.updateState(widget.data);
+      notifier.updateState(widget.data, widget.attachment);
     }
   }
 
@@ -116,6 +140,7 @@ class _MoreFilterContent extends StatelessWidget {
     final notifier = _FilterNotiferScope.of(context);
     final items = notifier.value.items;
     final single = notifier.value.singleConditionAndSingleSelect;
+    var attachment = List.of(notifier.attachment);
 
     return ListView.separated(
       physics: const ClampingScrollPhysics(),
@@ -127,16 +152,37 @@ class _MoreFilterContent extends StatelessWidget {
         bottom: single ? 0 : kBotBtnHeight + 10,
       ),
       itemBuilder: (context, index) {
+        // 外部自定义条件筛选
+        if (attachment.isNotEmpty) {
+          for (var attach in notifier.attachment) {
+            if (attach.item1 == index) {
+              attachment.remove(attach);
+              return attach.item2;
+            }
+          }
+        }
+        // 固定格式条件筛选
+        var idx = index - (notifier.attachment.length - attachment.length);
         return _FilterGroupScope(
-          data: Tuple2(items[index], index),
+          data: Tuple2(items[idx], idx),
           child: const _GroupContent(),
         );
       },
-      separatorBuilder: (context, index) => const Padding(
-        padding: EdgeInsets.symmetric(vertical: 16),
-        child: Divider(height: 1, color: Color(0xffEEEEEE)),
-      ),
-      itemCount: items.length,
+      separatorBuilder: (context, index) {
+        if (attachment.isNotEmpty) {
+          for (var attach in notifier.attachment) {
+            if (attach.item1 == index) {
+              return const SizedBox();
+            }
+          }
+        }
+
+        return const Padding(
+          padding: EdgeInsets.symmetric(vertical: 16),
+          child: Divider(height: 1, color: Color(0xffEEEEEE)),
+        );
+      },
+      itemCount: items.length + attachment.length,
     );
   }
 }

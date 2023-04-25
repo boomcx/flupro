@@ -2,7 +2,6 @@ export './state.dart';
 export './theme.dart';
 
 import 'package:flutter/material.dart';
-
 import './state.dart';
 import 'route/trans_dialog.dart';
 import 'theme.dart';
@@ -254,7 +253,7 @@ class _CompositedFollower extends StatelessWidget {
               child: scope.child,
             )
           ],
-        ),
+        ).hideKeyboard(context),
       ),
     );
   }
@@ -396,6 +395,22 @@ class _Button extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+extension HideKeyboardX on Widget {
+  /// 添加键盘关闭事件
+  Widget hideKeyboard(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        }
+      },
+      child: this,
     );
   }
 }

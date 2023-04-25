@@ -7,8 +7,31 @@ import 'package:tuple/tuple.dart';
 
 const double kBotBtnHeight = 56.0;
 
+typedef AttachmentEntity = Tuple2<int, Widget>;
+
 class SpinnerFilterNotifier extends ValueNotifier<SpinnerFilterState> {
-  SpinnerFilterNotifier(SpinnerFilterState state) : super(state);
+  SpinnerFilterNotifier(SpinnerFilterState state, this.onReseted)
+      : super(state);
+
+  /// 构造方法
+  factory SpinnerFilterNotifier.init(
+    List<SpinnerFilterEntity> data,
+    List<AttachmentEntity> attachList,
+    VoidCallback? onReseted,
+  ) {
+    if (data.isEmpty) {
+      return SpinnerFilterNotifier(const SpinnerFilterState(), onReseted);
+    }
+    final instance = SpinnerFilterNotifier(_getState(data), onReseted);
+    instance.updateAttach(attachList);
+    return instance;
+  }
+
+  /// 重置事件传递
+  final VoidCallback? onReseted;
+
+  /// 外部传入自定义视图
+  List<Tuple2<int, Widget>> attachment = [];
 
   /// 需要返回至外部得数据，与传入数据一致，同步状态筛选状态
   List<SpinnerFilterEntity> get outside => value.items.map((e) {
@@ -21,20 +44,49 @@ class SpinnerFilterNotifier extends ValueNotifier<SpinnerFilterState> {
         return entity.copyWith(items: tempList);
       }).toList();
 
-  /// 构造方法
-  factory SpinnerFilterNotifier.init(List<SpinnerFilterEntity> data) {
-    if (data.isEmpty) {
-      return SpinnerFilterNotifier(const SpinnerFilterState());
-    }
-    return SpinnerFilterNotifier(_getState(data));
-  }
-
-  updateState(List<SpinnerFilterEntity> data) {
+  updateState(
+      List<SpinnerFilterEntity> data, List<AttachmentEntity> attachList) {
     value = _getState(data);
+    updateAttach(attachList);
     notifyListeners();
   }
 
-  static SpinnerFilterState _getState(List<SpinnerFilterEntity> data) {
+  /// 外部视图排序
+  updateAttach(List<AttachmentEntity> attachList) {
+    final foxList = [
+      ...attachList,
+      ...List.generate(value.items.length, (index) => index)
+    ];
+
+    foxList.sort((p0, p1) {
+      int index0 = 0, index1 = 0;
+      if (p0 is AttachmentEntity) {
+        index0 = p0.item1;
+      } else if (p0 is int) {
+        index0 = p0;
+      }
+      if (p1 is AttachmentEntity) {
+        index1 = p1.item1;
+      } else if (p1 is int) {
+        index1 = p1;
+      }
+      return index0.compareTo(index1);
+    });
+
+    final sortAttach = <AttachmentEntity>[];
+    for (var i = 0; i < foxList.length; i++) {
+      var item = foxList[i];
+      if (item is AttachmentEntity) {
+        sortAttach.add(Tuple2(i, item.item2));
+      }
+    }
+
+    attachment = sortAttach;
+  }
+
+  static SpinnerFilterState _getState(
+    List<SpinnerFilterEntity> data,
+  ) {
     final singleCondition = data.length == 1;
     final singleSelect = data.first.isRadio == true;
     // final notExtra = items.first['extra'] == null;
@@ -61,6 +113,7 @@ class SpinnerFilterNotifier extends ValueNotifier<SpinnerFilterState> {
         items[k].selected = false;
       }
     }
+    onReseted?.call();
   }
 
   /// 获取选择的结果

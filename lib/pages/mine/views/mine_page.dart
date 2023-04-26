@@ -1,9 +1,6 @@
 import 'package:flupro/app.dart';
 import 'package:flupro/base/widgets/app_bar.dart';
-import 'package:flupro/base/widgets/highlighted_button.dart';
-import 'package:flupro/base/widgets/popup_message.dart';
 import 'package:flupro/base/widgets/primary_button.dart';
-import 'package:flupro/custom/spinner/spinner.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key? key}) : super(key: key);

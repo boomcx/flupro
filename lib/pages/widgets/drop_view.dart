@@ -1,10 +1,9 @@
 import 'package:flupro/app.dart';
 import 'package:flupro/base/widgets/app_bar.dart';
-import 'package:flupro/custom/spinner/spinner.dart';
-import 'package:flupro/custom/spinner_filter_notifier/spinner_filter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:spinner_box/spinner_box.dart';
 import 'package:tuple/tuple.dart';
 part 'drop_view.freezed.dart';
 part 'drop_view.g.dart';
@@ -320,6 +319,7 @@ var def = [
   ]),
   SpinnerFilterEntity(
       desc: '9999999999999999999999999999999999999999999999',
+      suffixIcon: Assets.images.searchIconVip.path,
       key: 'group3',
       title: '分组3-多选',
       isRadio: false,
